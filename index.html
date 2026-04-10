@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mattos Telecom</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+
+</head>
+
+<body>
+
+<img src="logo.png" class="logo">
+
+<div id="filtros">
+  <b>Empresas</b><br>
+  <label><input type="checkbox" checked onchange="toggleEmpresa('HIGHLINE')"> HIGHLINE</label><br>
+  <label><input type="checkbox" checked onchange="toggleEmpresa('SBA')"> SBA</label><br>
+  <label><input type="checkbox" checked onchange="toggleEmpresa('TBSA')"> TBSA</label>
+</div>
+
+<input type="text" placeholder="Buscar cidade..." oninput="buscarCidade(this.value)" class="busca">
+
+<button onclick="proximaTorre()" class="btn-rota">🚀 Próxima Torre</button>
+
+<button onclick="resetarDia()" class="btn-reset">🔄 Resetar</button>
+
+<div id="dashboard">
+  <h3>📊 Mattos Telecom</h3>
+
+  <div class="card">Total: <b id="totalTorres"></b></div>
+  <div class="card">Feitas: <b id="torresFeitas"></b></div>
+  <div class="card">Pendentes: <b id="torresPendentes"></b></div>
+</div>
+
+<div id="painel">
+  <span id="contador"></span>
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
