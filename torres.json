@@ -1,0 +1,23 @@
+[
+  {"nome":"HIGHLINE - TCMGARX0007","lat":-19.59444,"lng":-46.95553,"empresa":"HIGHLINE","cidade":"Araxá","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGBET0001","lat":-19.9731,"lng":-44.2103,"empresa":"HIGHLINE","cidade":"Betim","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGBET0005","lat":-19.9617,"lng":-44.1404,"empresa":"HIGHLINE","cidade":"Betim","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGBET0006","lat":-19.9475,"lng":-44.1378,"empresa":"HIGHLINE","cidade":"Betim","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGBH00039","lat":-19.921,"lng":-43.8815,"empresa":"HIGHLINE","cidade":"Belo Horizonte","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGBH00045","lat":-19.8295,"lng":-43.9892,"empresa":"HIGHLINE","cidade":"Belo Horizonte","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGBH00047","lat":-19.871,"lng":-43.994,"empresa":"HIGHLINE","cidade":"Belo Horizonte","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGBH00051","lat":-19.7893,"lng":-43.9686,"empresa":"HIGHLINE","cidade":"Belo Horizonte","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGCGS00001","lat":-20.5137,"lng":-43.8571,"empresa":"HIGHLINE","cidade":"Congonhas","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGCGS00002","lat":-20.550769,"lng":-43.740624,"empresa":"HIGHLINE","cidade":"Congonhas","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGCGS00004","lat":-20.542861,"lng":-43.748056,"empresa":"HIGHLINE","cidade":"Congonhas","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGCON0002","lat":-19.6679,"lng":-43.9948,"empresa":"HIGHLINE","cidade":"Confins","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGCQT0001","lat":-19.94257,"lng":-47.542308,"empresa":"HIGHLINE","cidade":"Conquista","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGCQT0002","lat":-19.91367,"lng":-47.55311,"empresa":"HIGHLINE","cidade":"Conquista","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGCTG0005","lat":-19.9333,"lng":-44.0781,"empresa":"HIGHLINE","cidade":"Contagem","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGCTG0008","lat":-19.9242,"lng":-44.0549,"empresa":"HIGHLINE","cidade":"Contagem","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGSLG0002","lat":-19.4558,"lng":-44.2405,"empresa":"HIGHLINE","cidade":"Sete Lagoas","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGSLG0003","lat":-19.4345,"lng":-44.2496,"empresa":"HIGHLINE","cidade":"Sete Lagoas","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGSLZ0002","lat":-19.79807,"lng":-43.9225,"empresa":"HIGHLINE","cidade":"Santa Luzia","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGSTJ0001","lat":-19.309623,"lng":-47.52485,"empresa":"HIGHLINE","cidade":"Santa Juliana","status":"pendente"},
+  {"nome":"HIGHLINE - TCMGSTJ0002","lat":-19.29754,"lng":-47.56074,"empresa":"HIGHLINE","cidade":"Santa Juliana","status":"pendente"}
+]

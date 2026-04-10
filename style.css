@@ -1,0 +1,71 @@
+body { margin: 0; }
+
+#map { height: 100vh; }
+
+.logo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 110px;
+  z-index: 1000;
+  background: white;
+  border-radius: 10px;
+}
+
+#filtros {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 1000;
+}
+
+.busca {
+  position: absolute;
+  top: 120px;
+  left: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  z-index: 1000;
+}
+
+.btn-rota {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: #0b3d91;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 1000;
+}
+
+.btn-reset {
+  position: absolute;
+  bottom: 20px;
+  left: 150px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 1000;
+}
+
+#dashboard {
+  position: absolute;
+  top: 180px;
+  left: 10px;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 1000;
+}
+
+.card {
+  margin: 5px 0;
+}
