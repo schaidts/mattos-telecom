@@ -118,6 +118,9 @@ canvas#pitch{display:block;width:100%;max-width:760px;margin:auto;aspect-ratio:7
 .cre{display:grid;grid-template-columns:1fr 120px;gap:12px}.cre canvas{width:120px;height:120px;image-rendering:pixelated;border:3px solid var(--yl);background:#0b1f17}
 @media(max-width:700px){.g2{grid-template-columns:1fr}.hero{flex-wrap:wrap}.app{padding:8px 8px 20px}.opt{grid-template-columns:1fr}.hud .tm span{display:none}}
 @media(max-width:420px){.cre{grid-template-columns:1fr}.cre canvas{margin:auto}nav button{font-size:16px}.tr{grid-template-columns:1fr}}
+.sit{text-align:center;background:#04100a;border:2px solid var(--ln);padding:6px;margin:6px 0}.sit b{display:block;font:10px/1.6 var(--px);color:var(--gr)}.sit span{color:var(--mt)}.sit i{display:block;font:9px/1.8 var(--px);font-style:normal;color:var(--rd);animation:bob .6s steps(2) infinite}
+.tag.gr{color:var(--gr);border-color:var(--gr)}.tag.rd{color:var(--rd);border-color:var(--rd)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--yl);color:#1b2a00;font:10px/1.5 var(--px);padding:10px 14px;box-shadow:0 0 0 3px #000,4px 4px 0 3px #000;z-index:30;animation:pop2 .3s}
 /* ===== Motion ===== */
 @keyframes in{from{opacity:0;transform:translateY(10px)}}
 @keyframes fade{from{opacity:0}}
@@ -146,6 +149,7 @@ section.enter{animation:in .28s}
 <section id="mkt" class="hidden"></section>
 </div>
 <div class="modal" id="menu"><div class="mn"><canvas id="mc" width="320" height="180"></canvas><h1>BRASIL FOOTBALL CAREER<span>3.0</span></h1><p class="mt">Do campinho ao estádio lotado</p><button class="go" id="mcont">Continuar carreira</button><button id="mnew">Nova carreira</button><button id="mhow">Como jogar</button><p id="mhelp" class="hidden mt">Treine para evoluir atributos. Nas partidas, o jogo avança até os seus lances: escolha a jogada (1, 2, 3) e pare o marcador na faixa verde (Espaço ou toque). No centro dourado o acerto é perfeito. Suba de categoria e assine com clubes maiores no Mercado.</p></div></div>
+<div class="modal hidden" id="evm"><div class="card"></div></div>
 <div class="modal hidden" id="mod"><div class="card"><h2>Seu primeiro contrato</h2><p>Crie seu atleta e entre na base Sub-17.</p>
 <div class="cre"><div>
 <label for="nn">Nome</label><input id="nn" maxlength="22" value="Gabriel Silva">

@@ -26,15 +26,17 @@ const CL=[
  {n:'Cruzeiro',c:['#1b4fd1','#fff'],t:1,min:60,s:105,k:{p:'plain',a:'#1b4fd1',b:'#f2f2f2',sh:'#f2f2f2',so:'#1b4fd1'}},
  {n:'Botafogo',c:['#111','#fff'],t:2,min:64,s:170,k:{p:'stripes',a:'#151515',b:'#f2f2f2',sh:'#151515',so:'#8a8a8a'}},
  {n:'Palmeiras',c:['#0a7d3b','#fff'],t:2,min:68,s:220,k:{p:'plain',a:'#0a7d3b',b:'#f2f2f2',sh:'#f2f2f2',so:'#0a7d3b'}},
- {n:'Flamengo',c:['#d22','#111'],t:2,min:70,s:260,k:{p:'hoops',a:'#d22',b:'#151515',sh:'#f2f2f2',so:'#d22'}}];
-const REG=['NE','NE','RJ','RS','MG','RJ','SP','SP','MG','RJ','SP','RJ']; // clássicos regionais
+ {n:'Flamengo',c:['#d22','#111'],t:2,min:70,s:260,k:{p:'hoops',a:'#d22',b:'#151515',sh:'#f2f2f2',so:'#d22'}},
+ {n:'Internacional',c:['#d4142a','#fff'],t:1,min:57,s:95,k:{p:'plain',a:'#d4142a',b:'#f2f2f2',sh:'#f2f2f2',so:'#d4142a'}}]; // novo clube: sempre no fim para não mudar índices de saves
+const REG=['NE','NE','RJ','RS','MG','RJ','SP','SP','MG','RJ','SP','RJ','RS']; // clássicos regionais
 const GKC=['#ff9f1c','#a3e635','#22d3ee','#e879f9','#facc15','#fb7185'];
 const FN=['Rafa','Thiago','Léo','Caio','Davi','Enzo','Bruno','Vitor','Mateus','Nico'],LN=['Lima','Souza','Costa','Rocha','Alves','Neves','Dias','Pinto','Melo','Cruz'];
 const sqd=i=>Array.from({length:5},(_,j)=>({n:FN[(i*3+j*2)%10]+' '+LN[(i*7+j*3)%10],num:[1,4,5,8,9][j],pos:['Goleiro','Zagueiro','Volante','Meia','Atacante'][j],o:40+CL[i].t*8+(i*5+j*3)%9}));
 const AN={speed:'Velocidade',shoot:'Finalização',pass:'Passe',dribble:'Drible',defense:'Defesa',physical:'Físico'};
 const POS={Atacante:{shoot:6,speed:2},'Meia-atacante':{pass:5,dribble:3},'Ponta-direita':{speed:6,dribble:3},'Ponta-esquerda':{speed:6,dribble:3},Volante:{defense:8,physical:4},Zagueiro:{defense:10,physical:5,shoot:-8},Lateral:{speed:5,defense:5},Goleiro:{defense:8}};
 const PAB={Atacante:'ATA','Meia-atacante':'MEI','Ponta-direita':'PD','Ponta-esquerda':'PE',Volante:'VOL',Zagueiro:'ZAG',Lateral:'LAT',Goleiro:'GOL',Meia:'MEI'};
-const def=()=>({name:'Gabriel Silva',pos:'Meia-atacante',foot:'Direito',num:10,age:16,season:2026,lvl:0,club:0,sal:20,trs:0,rep:0,money:0,energy:100,morale:70,attrs:{speed:48,shoot:46,pass:50,dribble:52,defense:32,physical:47},G:0,Gl:0,A:0,W:0,D:0,L:0,fx:0,hist:[],feed:['Bem-vindo à base. O treinador quer ver você em campo.'],made:0,tmsg:'Escolha um treino. Cada sessão custa 20 de energia.'});
+const def=()=>({name:'Gabriel Silva',pos:'Meia-atacante',foot:'Direito',num:10,age:16,season:2026,lvl:0,club:0,sal:20,trs:0,rep:0,money:0,energy:100,morale:70,attrs:{speed:48,shoot:46,pass:50,dribble:52,defense:32,physical:47},G:0,Gl:0,A:0,W:0,D:0,L:0,fx:0,hist:[],feed:['Bem-vindo à base. O treinador quer ver você em campo.'],made:0,tmsg:'Escolha um treino. Cada sessão custa 20 de energia.',
+ Sv:0,T:{j:0,g:0,a:0,sv:0},inv:{boot:0,fisio:0,pt:0,emp:0,psi:0},goals:null,gs:0,tro:[],offers:[],conv:0,evq:null});
 const OPT={a:[['Chutar','shoot',.55,'Gol direto, risco alto'],['Driblar','dribble',.5,'Passa pelo marcador'],['Passar','pass',.42,'Chance de assistência']],d:[['Desarmar','defense',.5,'Tira a bola no pé'],['Antecipar','speed',.45,'Corta o passe'],['Afastar','physical',.4,'Segura no corpo']],g:[['Espalmar','defense',.5,'Defesa difícil'],['Sair do gol','speed',.45,'Fecha o ângulo'],['Encaixar','physical',.4,'Segura firme']]};
 const SC={a:'Você recebeu na área! O que faz?',d:'Ataque do rival! Hora de defender.',g:'Chute perigoso na sua direção!'};
 const mkTab=()=>CL.map(()=>({p:0,j:0,v:0,e:0,d:0,gp:0,gc:0}));
@@ -43,7 +45,8 @@ const mkTab=()=>CL.map(()=>({p:0,j:0,v:0,e:0,d:0,gp:0,gc:0}));
 let S=def(),M=null;
 try{const d=localStorage.getItem('bfc2');if(d)S={...def(),...JSON.parse(d)}}catch(e){}
 if(S.club>=CL.length)S.club=0;S.tab=S.tab||mkTab();S.rd=S.rd||0;S.sp=S.sp||0;
-if(S.tab.length!==CL.length)S.tab=mkTab();
+while(S.tab.length<CL.length)S.tab.push({p:0,j:0,v:0,e:0,d:0,gp:0,gc:0}); // migração: clube novo entra zerado
+S.inv={...def().inv,...(S.inv||{})};S.T={...def().T,...(S.T||{})};
 const sv=()=>{try{localStorage.setItem('bfc2',JSON.stringify(S))}catch(e){}};
 const ovr=()=>Math.round(Object.values(S.attrs).reduce((a,b)=>a+b,0)/6);
 const feed=t=>{S.feed.unshift(t);S.feed=S.feed.slice(0,8)};

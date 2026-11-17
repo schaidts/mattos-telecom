@@ -26,28 +26,28 @@ function mdraw(t){const x=$('pitch').getContext('2d'),T=t/1000,ST=M.ST;x.setTran
  if(M.ph==='run'){x.fillStyle='#000a';x.fillRect(W-150,H-30,140,20);x.fillStyle='#ffd400';x.font='8px "Press Start 2P",monospace';x.textAlign='right';x.fillText('▶▶ ACELERANDO',W-18,H-17);x.textAlign='left'}}
 function plate(x){const u=M.u,o=M.ph==='time'?OPT[role()][M.o_]:null;x.fillStyle='#000c';x.fillRect(10,H-96,260,62);x.fillStyle='#ffd400';x.fillRect(10,H-96,4,62);
  portrait(x,20,H-90,3,u.look,M.K[0],null,{gk:u.k==='g'});x.font='9px "Press Start 2P",monospace';x.fillStyle='#fff';x.fillText(S.name.slice(0,16),76,H-74);
- x.fillStyle='#8fb3a0';x.fillText(`#${S.num} ${PAB[S.pos]||''}  GER ${ovr()}`,76,H-58);if(o){x.fillStyle='#ffd400';x.fillText(`${o[0].toUpperCase()} ${S.attrs[o[1]]}`,76,H-42)}}
+ x.fillStyle='#8fb3a0';x.fillText(`#${S.num} ${PAB[S.pos]||''}  GER ${ovr()}`,76,H-58);if(o){x.fillStyle='#ffd400';x.fillText(`${o[0].toUpperCase()} ${S.attrs[o[1]]}`,76,H-42)}else{x.fillStyle='#04100a';x.fillRect(76,H-50,180,8);x.fillStyle=M.sta>50?'#3ddc84':M.sta>30?'#ffd400':'#ff5a5f';x.fillRect(76,H-50,180*M.sta/100,8);x.fillStyle='#8fb3a0';x.font='7px "Press Start 2P",monospace';x.fillText('FÔLEGO',200,H-54)}}
 function drawBanner(x,b){const a=Math.min(1,b.t/.25),out=Math.max(0,(b.t-(b.d-.3))/.3),s=b.big?(a<1?.4+a*.9:1.3-.0*b.t):1,al=1-out;x.save();x.globalAlpha=al;
  const y=b.big?H/2-20:84;x.fillStyle='#000b';x.fillRect(0,y-30*(b.big?1.4:1),W,(b.big?84:56));x.fillStyle=b.col;x.fillRect(0,y-30*(b.big?1.4:1),W,3);x.fillRect(0,y-30*(b.big?1.4:1)+(b.big?81:53),W,3);
  x.translate(W/2+(1-a)*-200,y);x.scale(s,s);x.textAlign='center';x.font=`${b.big?26:16}px "Press Start 2P",monospace`;x.fillStyle='#000';x.fillText(b.txt,3,3);x.fillStyle=b.col;x.fillText(b.txt,0,0);
  if(b.sub){x.font='9px "Press Start 2P",monospace';x.fillStyle='#fff';x.fillText(b.sub,0,b.big?22:18)}x.restore()}
 /* ---- bandeirão de abertura (escudos enviados pelo usuário) ---- */
-function mkFlag(){const ci=S.club,c=CL[ci].c,im=IM[ci],ok=im&&im.complete&&im.naturalWidth;if(!ok)return flag0();
+function mkFlag(ci=S.club){const c=CL[ci].c,im=IM[ci],ok=im&&im.complete&&im.naturalWidth;if(!ok)return flag0(ci);
  const ar=im.naturalWidth/im.naturalHeight,wide=ar>=1.5;let w=320,h=240;if(wide){w=600;h=Math.round(600/ar);if(h>240){h=240;w=Math.round(240*ar)}}
- const f=mkCanvas(w,h),g=f.getContext('2d');g.fillStyle=BGC[ci]||'#111';g.fillRect(0,0,w,h);
+ const f=mkCanvas(w,h),g=f.getContext('2d');g.fillStyle=BGC[ci]||'#111';/*mandante*/g.fillRect(0,0,w,h);
  if(wide)g.drawImage(im,0,0,w,h);else{const iw=h*ar;g.drawImage(im,(w-iw)/2,0,iw,h);g.font='18px "Press Start 2P",monospace';g.textAlign='center';g.lineWidth=5;g.strokeStyle='#000';g.fillStyle='#fff';const n=CL[ci].n.toUpperCase();g.strokeText(n,w/2,h-12);g.fillText(n,w/2,h-12)}
  g.fillStyle=c[0];g.fillRect(0,0,w,7);g.fillRect(0,h-7,w,7);g.fillStyle=c[1];g.fillRect(0,0,7,h);g.fillRect(w-7,0,7,h);return f}
-function flag0(){const k=CL[S.club].k,f=mkCanvas(600,180),g=f.getContext('2d');g.fillStyle=k.a;g.fillRect(0,0,600,180);g.fillStyle=k.b;
+function flag0(ci=S.club){const k=CL[ci].k,f=mkCanvas(600,180),g=f.getContext('2d');g.fillStyle=k.a;g.fillRect(0,0,600,180);g.fillStyle=k.b;
  if(k.p==='hoops'||k.p==='band')for(let i=0;i<3;i++)g.fillRect(0,30+i*50,600,22);else if(k.p==='sash'){g.beginPath();g.moveTo(80,0);g.lineTo(200,0);g.lineTo(520,180);g.lineTo(400,180);g.fill()}else for(let i=0;i<4;i++)g.fillRect(i*150+50,0,50,180);
- g.fillRect(0,0,600,8);g.fillRect(0,172,600,8);g.font='26px "Press Start 2P",monospace';g.textAlign='center';g.lineWidth=7;g.strokeStyle='#000';g.fillStyle='#fff';const n=CL[S.club].n.toUpperCase();g.strokeText(n,300,102);g.fillText(n,300,102);return f}
-function bandeirao(x,t){const c=CL[S.club].c,F=M.F||(M.F=mkFlag());
+ g.fillRect(0,0,600,8);g.fillRect(0,172,600,8);g.font='26px "Press Start 2P",monospace';g.textAlign='center';g.lineWidth=7;g.strokeStyle='#000';g.fillStyle='#fff';const n=CL[ci].n.toUpperCase();g.strokeText(n,300,102);g.fillText(n,300,102);return f}
+function bandeirao(x,t){const hc=M.E.home?S.club:M.oi,c=CL[hc].c,F=M.F||(M.F=mkFlag(hc));
  x.fillStyle='#07140f';x.fillRect(0,0,W,H);x.save();const z=1.25-t*.07;x.translate(360,210);x.scale(z,z);x.translate(-360,-210);
  const pal=[c[0],c[1],'#eee','#f0c000','#222'];for(let r=0;r<12;r++)for(let i=0;i<72;i++){const hh=Math.sin(t*9+i*.7+r)*3;x.fillStyle=pal[(i*7+r*3)%5];x.fillRect(i*10,300+r*16+hh,8,14);x.fillStyle=SKIN[(i*3+r)%6][0];x.fillRect(i*10+1,293+r*16+hh,6,6);if((i+r)%5===0&&Math.sin(t*6+i)>0){x.fillRect(i*10-1,288+r*16+hh,2,6);x.fillRect(i*10+7,288+r*16+hh,2,6)}}
  for(let i=0;i<14;i++){const a=(t*.6+i*.17)%1;x.globalAlpha=(1-a)*.7;x.fillStyle=i%2?c[0]:'#ffdf00';x.beginPath();x.arc(30+i*50,400-a*300,10+a*30,0,7);x.fill()}x.globalAlpha=1;
  const FW=F.width,FH=F.height,fx=(W-FW)/2,fy=Math.max(30,300-FH);x.fillStyle='#8a6a3a';x.fillRect(fx-10,fy-10,8,FH+70);x.fillRect(fx+FW+2,fy-10,8,FH+70);
  for(let i=0;i<FW/6;i++){const o=Math.sin(t*3+i*.15)*9;x.drawImage(F,i*6,0,6,FH,fx+i*6,fy+o,6,FH);x.fillStyle=`rgba(0,0,0,${.18+Math.cos(t*3+i*.15)*.14})`;x.fillRect(fx+i*6,fy+o,6,FH)}
  for(let i=0;i<20;i++){const a=(t*.8+i*.13)%1;x.fillStyle=pickR(['#fff','#ffd400',c[0]]);x.fillRect((i*97+t*30)%W,a*H,3,3)}x.restore();
- x.fillStyle='#000a';x.fillRect(0,0,W,40);x.fillStyle='#fff';x.font='14px "Press Start 2P",monospace';x.textAlign='center';x.fillText('A TORCIDA FAZ A FESTA',360,27);x.font='8px "Press Start 2P",monospace';x.fillStyle='#8fb3a0';x.fillText('toque para pular',360,H-12);x.textAlign='left';
+ x.fillStyle='#000a';x.fillRect(0,0,W,40);x.fillStyle='#fff';x.font='14px "Press Start 2P",monospace';x.textAlign='center';x.fillText(M.E.home?'A TORCIDA FAZ A FESTA':'A TORCIDA RIVAL FAZ PRESSÃO',360,27);x.font='8px "Press Start 2P",monospace';x.fillStyle='#8fb3a0';x.fillText('toque para pular',360,H-12);x.textAlign='left';
  x.fillStyle='#000';x.globalAlpha=Math.max(0,1-t*2)+Math.max(0,(t-2.9)*3);x.fillRect(0,0,W,H);x.globalAlpha=1}
 /* ---- apresentação das escalações ---- */
 function lineups(x,t){const g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#081226');g.addColorStop(1,'#06120d');x.fillStyle=g;x.fillRect(0,0,W,H);
@@ -66,8 +66,8 @@ function lineups(x,t){const g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'
 /* ================= 12. INTERFACE ================= */
 function ui(){const v=$('mv'),r=role();if(!M)return;
  if(M.ph==='run'||M.ph==='res'||M.ph==='intro')v.innerHTML=`<p class="q">${M.msg}</p>`;
- else if(M.ph==='pick')v.innerHTML=`<p class="mt" style="text-align:center">${M.msg}</p><p class="q">${SC[r]}</p><div class="opt">${OPT[r].map((o,i)=>`<button data-o="${i}"><b>${i+1}. ${o[0]}</b><small>${o[3]}</small><span class="row"><span>${icon(o[1])} ${S.attrs[o[1]]}</span><span class="rk" title="Risco">${[1,2,3].map(n=>`<i class="${o[2]>=.35+n*.05?'on':''}"></i>`).join('')}</span></span></button>`).join('')}</div>`;
- else if(M.ph==='time')v.innerHTML=`<p class="q">Pare o marcador na faixa verde. Centro dourado = perfeito!</p><div id="tb"><i id="zn" style="left:${(M.z.c-M.z.w/2)*100}%;width:${M.z.w*100}%"><i id="zp"></i></i><i id="cur"></i></div><button class="go" id="act" style="width:100%">Agora!</button>`;
+ else if(M.ph==='pick'){const gs=gameState();v.innerHTML=`<p class="mt" style="text-align:center">${M.msg}</p><div class="sit"><b>${M.sit.t}</b><span>${M.sit.d}</span>${gs?`<i>${gs}</i>`:''}</div><p class="q">${SC[r]}</p><div class="opt">${OPT[r].map((o,i)=>{const tg=sitTag(sitMul(i));return`<button data-o="${i}"><b>${i+1}. ${o[0]}</b><span class="tag ${tg[1]}" style="align-self:flex-start">${tg[0]}</span><small>${o[3]}</small><span class="row"><span>${icon(o[1])} ${S.attrs[o[1]]}</span><span class="rk" title="Risco">${[1,2,3].map(n=>`<i class="${o[2]>=.35+n*.05?'on':''}"></i>`).join('')}</span></span></button>`}).join('')}</div>`}
+ else if(M.ph==='time')v.innerHTML=`<p class="q">Pare o marcador na faixa verde. Centro dourado = perfeito!</p><p class="mt" style="text-align:center">Faixa ${Math.round(M.z.w*100)}% · velocidade ${M.z.sp>5.6?'alta':M.z.sp>4.4?'média':'baixa'} · fôlego ${Math.round(M.sta)}</p><div id="tb"><i id="zn" style="left:${(M.z.c-M.z.w/2)*100}%;width:${M.z.w*100}%"><i id="zp"></i></i><i id="cur"></i></div><button class="go" id="act" style="width:100%">Agora!</button>`;
  else v.innerHTML='';
  document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>pick(+b.dataset.o));if($('act'))$('act').onpointerdown=tap}
 const PG=['home','train','play','career','mkt'],PGN=['Início','Treino','Jogo','Carreira','Mercado'];
@@ -88,16 +88,17 @@ function rdHome(){const L=LV[S.lvl],N=LV[S.lvl+1];
  $('home').innerHTML=`<div class="card hero"><canvas id="av" width="64" height="64"></canvas><div><h1>${S.name}</h1><p class="yl"><img class="kb" src="${kitBadge(S.club)}" alt=""> ${L.club}, ${L.n}</p><p><span class="tag">${PAB[S.pos]}</span><span class="tag">${S.age} ANOS</span><span class="tag">#${S.num}</span><span class="tag">PÉ ${S.foot.toUpperCase()}</span></p></div><div class="ovr"><b>${ovr()}</b><small>GERAL</small></div></div>
  <div class="g2"><div class="card"><h2>${icon('play')} Temporada ${S.season}</h2><div class="g4"><div><small>Jogos</small><b>${S.G}</b></div><div><small>Gols</small><b>${S.Gl}</b></div><div><small>Assist.</small><b>${S.A}</b></div><div><small>V-E-D</small><b>${S.W}-${S.D}-${S.L}</b></div></div><p></p><p>Últimos jogos</p>${fm}</div>
  <div class="card"><h2>${icon('physical')} Condição</h2>Energia ${S.energy}${bar(S.energy,'var(--yl)')}Moral ${S.morale}${bar(S.morale,'var(--bl)')}<h2 style="margin-top:8px">${icon('career')} ${N?'Rumo ao '+N.n:'Topo da carreira'}</h2>${N?bar(S.rep/N.need*100,'var(--gr)')+`<small>${S.rep} de ${N.need} de reputação</small>`:'<small>Você chegou ao profissional.</small>'}</div></div>
+ <div class="card"><h2>${icon('career')} Metas do treinador · ${S.season}</h2>${(S.goals||[]).map(g=>{const v=goalVal(g);return`<div class="row"><span>${g.done?'✔ ':''}${g.t}</span><b class="${g.done?'gr':'yl'}">${g.k==='avg'?v||'-':Math.min(v,g.n)}/${g.n}</b></div>${bar(g.done?100:v/g.n*100,g.done?'var(--gr)':'var(--or)')}`}).join('')||'<small>Jogue uma partida para receber metas.</small>'}<small>Cada meta cumprida rende reputação e dinheiro.</small></div>
  <div class="card feed"><h2>${icon('news')} Notícias</h2>${S.feed.slice(0,5).map(x=>`<p><span class="yl">›</span><span>${x}</span></p>`).join('')}</div>`;avatar()}
 let lastT='technical';
 function rdTrain(){$('train').innerHTML=`<div class="card"><h2>${icon('train')} Centro de treinamento</h2><canvas id="tc" width="320" height="110"></canvas><p>${S.tmsg}</p>Energia ${S.energy}${bar(S.energy,'var(--yl)')}</div><div class="tr">
  ${[['technical','Técnica','Passe e drible','dribble'],['shooting','Finalização','Chute e precisão','shoot'],['physical','Físico','Velocidade e força','speed'],['tactical','Tático','Passe e defesa','defense']].map(t=>`<button data-t="${t[0]}">${icon(t[3],'var(--yl)')}<span><b class="yl">${t[1]}</b><br><small>${t[2]}</small></span></button>`).join('')}</div>
- <div class="card" style="margin-top:14px"><button data-t="rest" style="width:100%">${icon('rest')} Descansar (+40 de energia)</button></div>`;
+ <div class="card" style="margin-top:14px"><button data-t="rest" style="width:100%">${icon('rest')} Descansar (+${S.inv.fisio?55:40} de energia)</button></div>`;
  document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>train(b.dataset.t));if(curPg==='train')trainAnim(1)}
 function train(t){lastT=t;TA.t=0;
- if(t==='rest'){S.energy=C(S.energy+40,0,100);S.morale=C(S.morale+3,0,100);S.tmsg='Você descansou e recuperou a energia.'}
+ if(t==='rest'){S.energy=C(S.energy+(S.inv.fisio?55:40),0,100);S.morale=C(S.morale+3,0,100);S.tmsg='Você descansou e recuperou a energia.'}
  else{if(S.energy<20){S.tmsg='Energia insuficiente. Descanse primeiro.';rd();return}
-  const a=S.attrs,g=k=>{const d=Math.max(1,Math.round(3*(1-a[k]/105)+(RN()<.3?1:0)));a[k]=C(a[k]+d,0,99);return AN[k]+' +'+d};
+  const a=S.attrs,g=k=>{const d=Math.max(1,Math.round(3*(1-a[k]/105)+(RN()<.3?1:0)))+(S.inv.pt&&RN()<.4?1:0);a[k]=C(a[k]+d,0,99);return AN[k]+' +'+d};
   const ks={technical:['pass','dribble'],shooting:['shoot'],physical:['speed','physical'],tactical:['pass','defense']}[t];
   S.tmsg='Treino concluído: '+ks.map(g).join(', ')+'.';S.energy-=20;S.morale=C(S.morale+2,0,100)}
  SND.ui(520);rd();sv()}
@@ -128,6 +129,7 @@ function rdCareer(){const at=Object.entries(S.attrs).map(([k,v])=>`<div class="a
  const notes=S.hist.slice(0,10).reverse();
  $('career').innerHTML=`<div class="g2"><div class="card"><h2>${icon('star')} Atributos</h2><canvas id="radar" width="240" height="220"></canvas>${at}</div><div class="card"><h2>${icon('career')} Caminho</h2>${LV.map((l,i)=>`<div class="step ${i===S.lvl?'cur':i<S.lvl?'ok':''}"><b>${l.n}</b><br><small>${i===S.lvl?'Você está aqui':i<S.lvl?'Concluído':'Exige '+l.need+' de reputação'}</small></div>`).join('')}
  <h2 style="margin-top:14px">${icon('play')} Notas recentes</h2><div style="display:flex;align-items:flex-end;gap:4px;height:70px;border-bottom:2px solid var(--ln)">${notes.map(h=>`<div title="${h.o} ${h.s}" style="flex:1;height:${(+h.n)*10}%;background:${+h.n>=8?'var(--gr)':+h.n>=6.5?'var(--yl)':'var(--or)'};box-shadow:inset 0 3px 0 #fff4"></div>`).join('')||'<small>Sem jogos</small>'}</div></div></div>
+ <div class="card"><h2>${icon('career')} Sala de troféus</h2><div class="g4"><div><small>Jogos</small><b>${S.T.j}</b></div><div><small>Gols</small><b>${S.T.g}</b></div><div><small>Assist.</small><b>${S.T.a}</b></div><div><small>Salvos</small><b>${S.T.sv}</b></div></div><p></p>${S.tro.length?S.tro.map(t=>`<p class="yl">🏆 ${t}</p>`).join(''):'<small>Nenhum troféu ainda. Títulos, prêmios individuais e convocações aparecem aqui.</small>'}</div>
  <div class="card"><h2>${icon('news')} Histórico de partidas</h2>${S.hist.length?`<table>${S.hist.slice(0,10).map(h=>`<tr><td><i class="f ${h.r}">${h.r}</i></td><td>${h.o}</td><td>${h.s}</td><td>nota ${h.n}</td><td>${h.g?h.g+' gol(s)':''}</td></tr>`).join('')}</table>`:'<small>Jogue sua primeira partida.</small>'}</div>
  <div class="card"><h2>${icon('career')} Tabela</h2><table><tr><td></td><td>Clube</td><td>P</td><td>J</td><td>SG</td></tr>${table().map((i,k)=>{const t=S.tab[i];return `<tr class="${i===S.club?'me':''}"><td>${k+1}</td><td><img class="kb" style="width:18px;height:18px" src="${kitBadge(i)}" alt=""> ${CL[i].n}</td><td>${t.p}</td><td>${t.j}</td><td>${t.gp-t.gc}</td></tr>`}).join('')}</table></div>
  <div class="card"><h2>${icon('star')} Pontos de habilidade: ${S.sp}</h2><p class="mt">Nota 8 ou mais em uma partida rende 1 ponto.</p><div class="row" style="justify-content:flex-start">${Object.keys(AN).map(k=>`<button data-k="${k}" ${S.sp?'':'disabled'}>${icon(k)} ${AN[k]} +2</button>`).join('')}</div></div>
@@ -137,10 +139,13 @@ function rdCareer(){const at=Object.entries(S.attrs).map(([k,v])=>`<div class="a
 function rdMkt(){const cur=CL[S.club],lock=S.trs===S.season,o=ovr(),k=kitOf(S.club),sq=sqd(S.club),gk=S.pos==='Goleiro',ui0=gk?0:3,spots=[[10,50],[30,22],[30,78],[58,50],[80,30]];
  const slots=sq.map((q,i)=>{const me=i===ui0,L=me?userLook():lookOf(q.n+S.club),nm=me?S.name:q.n,num=me?S.num:q.num;return`<div class="slot ${me?'me':''}" style="left:${spots[i][0]}%;top:${spots[i][1]}%"><img src="${portraitURL(nm,L,k,null,i===0)}" alt=""><span>${num} ${nm.split(' ')[0]}</span></div>`}).join('');
  $('mkt').innerHTML=`<div class="card"><h2>${icon('mkt')} Contrato atual</h2><div class="row"><span><img class="kb" src="${kitBadge(S.club)}" alt=""> <b>${cur.n}</b></span><span class="yl">R$ ${S.sal} por jogo</span></div><p class="mt">${lock?'Janela fechada nesta temporada.':'Janela aberta: você pode assinar com outro clube.'}</p></div>
+ ${S.offers&&S.offers.length&&!lock?`<div class="card" style="border-color:var(--yl)"><h2 style="color:var(--yl)">${icon('news','var(--yl)')} Propostas recebidas</h2>${S.offers.map((f,k)=>`<div class="row off"><span><img class="kb" src="${kitBadge(f.c)}" alt=""> <b>${CL[f.c].n}</b><br><small>R$ ${Math.round(CL[f.c].s*(S.inv.emp?1.2:1))} por jogo · luvas R$ ${f.b}</small></span><button class="go" data-of="${k}">Aceitar</button></div>`).join('')}</div>`:''}
+ <div class="card"><h2>${icon('coin')} Loja e equipe · R$ ${S.money}</h2><div class="tr">${SHOP.map((it,i)=>{const has=(S.inv[it.k]|0)>=it.lv,blk=it.req&&(S.inv[it.k]|0)<it.req;return`<button data-sh="${i}" ${has||blk||S.money<it.p?'disabled':''}>${icon(it.ic,'var(--yl)')}<span><b class="yl">${it.n}</b> ${has?'<span class="tag gr">ATIVO</span>':`<span class="tag">R$ ${it.p}</span>`}<br><small>${it.d}</small></span></button>`}).join('')}
+ <button id="sup" ${S.money<60||S.energy>=100?'disabled':''}>${icon('physical','var(--yl)')}<span><b class="yl">Suplemento</b> <span class="tag">R$ 60</span><br><small>+25 de energia na hora.</small></span></button></div></div>
  <div class="card"><h2>${icon('shirt')} Escalação: ${cur.n}</h2><div class="board">${slots}</div><table>${sq.map((q,i)=>{const me=i===ui0;return`<tr class="${me?'me':''}"><td>${me?S.num:q.num}</td><td><img class="pt" src="${portraitURL(me?S.name:q.n,me?userLook():lookOf(q.n+S.club),k,null,i===0)}" alt=""> ${me?S.name+' (você)':q.n}</td><td>${me?S.pos:q.pos}</td><td>${me?o:q.o}</td></tr>`}).join('')}</table></div>
  <div class="card"><h2>${icon('coin')} Clubes e propostas</h2>${CL.map((c,i)=>i===S.club?'':`<div class="row off"><span><img class="kb" src="${kitBadge(i)}" alt=""> <b>${c.n}</b><br><small>${['Base','Série B','Série A'][c.t]}, exige geral ${c.min}, R$ ${c.s} por jogo</small></span><button data-c="${i}" ${lock||o<c.min?'disabled':''}>${o<c.min?'Geral '+c.min:'Assinar'}</button></div>`).join('')}</div>`;
- document.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>trans(+b.dataset.c))}
-function trans(i){const c=CL[i];S.club=i;S.sal=c.s;S.trs=S.season;S.fx=0;S.morale=C(S.morale+8,0,100);S.rep+=c.t*4;feed('Transferência: você assinou com o '+c.n+'.');SND.ui(660);sv();rd();page('home')}
+ document.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>trans(+b.dataset.c));document.querySelectorAll('[data-sh]').forEach(b=>b.onclick=()=>buy(+b.dataset.sh));document.querySelectorAll('[data-of]').forEach(b=>b.onclick=()=>acceptOffer(+b.dataset.of));$('sup').onclick=buySup}
+function trans(i){const c=CL[i];S.club=i;S.sal=Math.round(c.s*(S.inv.emp?1.2:1));S.offers=[];S.trs=S.season;S.fx=0;S.morale=C(S.morale+8,0,100);S.rep+=c.t*4;feed('Transferência: você assinou com o '+c.n+'.');SND.ui(660);sv();rd();page('home')}
 /* ---- menu principal animado ---- */
 let mraf=0;const MS={};
 function menuAnim(t){const x=$('mc').getContext('2d'),s=t/1000;x.imageSmoothingEnabled=false;
@@ -167,6 +172,6 @@ function crPrev(){const x=$('cp').getContext('2d'),l=lookOf('u'+$('nn').value);l
 $('nh').onchange=()=>{CR.hs=+$('nh').value;crPrev()};['nn','np','nc','nu'].forEach(i=>$(i).addEventListener('input',crPrev));
 $('mk').onclick=()=>{S=def();S.name=$('nn').value.trim()||'Jogador';S.pos=$('np').value;S.foot=$('nf').value;S.num=C(+$('nu').value||10,1,99);S.made=1;S.look={sk:CR.sk,hs:CR.hs,hc:CR.hc};
  const a=S.attrs,b=POS[S.pos];for(const k in b)a[k]=C(a[k]+b[k],20,99);S.club=+$('nc').value;S.sal=CL[S.club].s;S.tab=mkTab();S.rd=0;S.sp=0;
- $('mod').classList.add('hidden');SND.whistle(1);sv();rd();page('home')};
+ mkGoals();$('mod').classList.add('hidden');SND.whistle(1);sv();rd();page('home')};
 addEventListener('keydown',e=>{if(!M)return;if(M.ph==='intro'&&(e.key===' '||e.key==='Enter')){e.preventDefault();skipIntro();return}if(e.key.length>1&&e.key!==' ')return;if(e.key===' '&&M.ph==='time'){e.preventDefault();tap()}else if(M.ph==='pick'&&'123'.includes(e.key))pick(+e.key-1)});
-sndBtn();rd();openMenu();
+if(S.made&&(!S.goals||S.gs!==S.season))mkGoals();sndBtn();rd();openMenu();$('mcont').addEventListener('click',()=>setTimeout(showEvent,300));

@@ -2,12 +2,12 @@
 const SKIN=[['#f6d7bb','#dcae8c'],['#e9bb92','#c9946a'],['#cf9466','#ad7246'],['#a86b40','#87512c'],['#7c4a2a','#5e3720'],['#5a3520','#3f2516']];
 const HAIRC=['#16100d','#2c1b10','#4e2e17','#7d4b22','#c8963e','#ead57e','#a33b1f','#d6d6d6'];
 const HAIRS=['Curto','Raspado','Black power','Cacheado','Longo','Moicano','Careca','Dreads','Topete'];
-const BOOTS=['#151515','#f5f5f5','#ff3b6b','#39ff14','#ffb000','#2a7fff','#f5f5f5','#151515'];
+const BOOTS=['#151515','#f5f5f5','#ff3b6b','#39ff14','#ffb000','#2a7fff','#f5f5f5','#151515','#ffcf33'];
 function lookOf(seed){const r=rng(hash(seed)),sk=(r()*6)|0;
  const hc=sk>=3?pickR([0,0,1,1,2,7,4],r):pickR([0,1,2,3,4,5,6,1],r);
  const hs=sk>=3?pickR([0,1,2,3,6,7,5,1],r):pickR([0,1,4,8,3,5,6,0],r);
  return{sk,hs,hc,bd:pickR([0,1,1,1,2],r),br:r()<.3?(r()<.5?1:2):0,bt:(r()*BOOTS.length)|0,hb:r()<.1?1:0,sl:r()<.15?1:0}}
-const userLook=()=>{const l=lookOf('u'+S.name);if(S.look){l.sk=S.look.sk;l.hs=S.look.hs;l.hc=S.look.hc}return l};
+const userLook=()=>{const l=lookOf('u'+S.name);if(S.look){l.sk=S.look.sk;l.hs=S.look.hs;l.hc=S.look.hc}const bo=(S.inv&&S.inv.boot)|0;if(bo)l.bt=bo===2?8:3;return l};
 /* Uniformes */
 function kitOf(ci,vs){const k={...CL[ci].k,c2:CL[ci].k.c2||CL[ci].k.b};
  if(vs!=null&&cdist(k.a,CL[vs].k.a)<110){ // conflito: segundo uniforme
