@@ -1,0 +1,10 @@
+{
+  "name": "CRAQUE — Rumo à Glória",
+  "short_name": "CRAQUE",
+  "start_url": "./index.html",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#050c1d",
+  "theme_color": "#07122a",
+  "icons": [{ "src": "assets/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

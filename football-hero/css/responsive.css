@@ -1,0 +1,97 @@
+/* Responsive rules: phones (landscape primary), portrait, tablets, very short screens */
+
+/* compact landscape phones */
+@media (max-height: 520px) {
+  .screen { padding-top: max(10px, var(--safe-t)); padding-bottom: max(10px, var(--safe-b)); }
+  .menu-col { gap: 10px; width: min(440px, 56vw); }
+  .logo-mark svg { width: 44px; height: 44px; }
+  .logo-text h1 { font-size: 2.4rem; }
+  .logo-text p { font-size: .75rem; }
+  .btn-play { min-height: 60px; padding: 8px 16px; }
+  .play-ico { width: 40px; height: 40px; }
+  .play-txt b { font-size: 1.6rem; }
+  .menu-tile { min-height: 60px; padding: 8px 10px; }
+  .menu-tile small { display: none; }
+  .menu-tile [data-icon] svg { width: 20px; height: 20px; }
+  .profile-card { padding: 8px 12px; min-width: 220px; }
+  .pc-num { width: 40px; height: 40px; font-size: 1.3rem; }
+  .screen-head h2 { font-size: 1.5rem; }
+  .icon-btn { width: 44px; height: 44px; }
+  .chapter-banner { min-height: 0; padding: 10px 14px; }
+  .chapter-banner h3 { font-size: 1.35rem; }
+  .chapter-banner p { display: none; }
+  .ch-tab { min-height: 44px; padding: 4px 10px; }
+  .level-card { min-height: 110px; padding: 10px; }
+  .level-card .lc-num { font-size: 1.6rem; }
+  .level-card .lc-obj { font-size: .7rem; }
+  .career-body { grid-template-columns: 1fr 240px; }
+  .season .ring { width: 56px; height: 56px; }
+  .card { padding: 16px; }
+  .card.intro h2, .card.result h2 { font-size: 1.9rem; }
+  .card.intro, .card.result { gap: 7px; }
+  .iobj, .res-objs li { padding: 6px 10px; font-size: .82rem; }
+  .card.intro p { font-size: .85rem; }
+  .res-stars i { width: 42px; height: 42px; }
+  .res-stars i:nth-child(2) { width: 50px; height: 50px; }
+  .btn { min-height: 44px; }
+  .btn.big { min-height: 48px; }
+  .hud-objective { padding: 7px 11px; }
+  .hud-obj-row { font-size: .88rem; margin-top: 3px; }
+  .scoreboard { height: 40px; }
+  .sb-score { width: 34px; font-size: 1.45rem; }
+  #toasts { top: max(58px, calc(var(--safe-t) + 52px)); }
+  .toast { font-size: 1.05rem; padding: 7px 14px; }
+  .settings-body { gap: 8px; }
+  .side-card { padding: 12px; gap: 6px; }
+  .toggle { min-height: 42px; }
+  .slider { min-height: 38px; }
+}
+
+/* tablets / narrow desktop */
+@media (max-width: 1000px) {
+  .settings-body { grid-template-columns: 1fr 1fr; }
+}
+
+/* portrait (phones held upright) */
+@media (orientation: portrait) {
+  #screen-menu { flex-direction: column; justify-content: flex-end; }
+  .menu-shade { background: linear-gradient(0deg, rgba(5, 12, 29, .96) 0%, rgba(5, 12, 29, .82) 48%, rgba(5, 12, 29, 0) 75%); }
+  .menu-col { width: 100%; justify-content: flex-end; padding-bottom: 76px; }
+  .menu-grid { grid-template-columns: repeat(3, 1fr); }
+  .profile-card { left: max(16px, var(--safe-l)); right: max(16px, var(--safe-r)); min-width: 0; }
+  .career-body { grid-template-columns: 1fr; overflow-y: auto; }
+  .career-main { min-height: auto; }
+  .level-row { grid-template-columns: repeat(2, 1fr); }
+  .level-row .level-card:last-child { grid-column: span 2; }
+  .career-side .side-card.grow { min-height: 220px; }
+  .player-body { grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
+  .player-drag { order: -1; min-height: 34vh; }
+  .custom-panel { max-height: 52vh; }
+  .panel-screen.transparent { background: linear-gradient(0deg, rgba(5, 12, 29, .95) 0%, rgba(5, 12, 29, .7) 50%, rgba(5, 12, 29, 0) 70%); }
+  .settings-body { grid-template-columns: 1fr; }
+  #hud { flex-direction: column; gap: 8px; justify-content: flex-start; }
+  .hud-left { max-width: 100%; width: 100%; order: 2; }
+  .hud-right { width: 100%; justify-content: space-between; }
+  #toasts { top: 40%; }
+}
+
+@media (orientation: portrait) and (max-width: 420px) {
+  .menu-tile { min-height: 70px; padding: 10px; }
+  .menu-tile b { font-size: .85rem; }
+  .menu-tile small { display: none; }
+  .res-actions { grid-template-columns: 1fr 1fr; }
+  .res-actions .primary { grid-column: span 2; order: -1; }
+  .screen-head h2 { font-size: 1.5rem; }
+  .head-chip { padding: 6px 10px; font-size: .75rem; }
+  .sb-team span { display: none; }
+}
+
+/* large screens */
+@media (min-width: 1500px) and (min-height: 850px) {
+  .menu-col { width: 520px; }
+  .level-card { min-height: 190px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

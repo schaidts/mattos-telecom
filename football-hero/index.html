@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#07122a" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="description" content="CRAQUE — Road to Glory. Jogo de carreira de futebol em 3D: desenhe passes e chutes para criar jogadas de ataque." />
+  <title>CRAQUE · Rumo à Glória</title>
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/menu.css" />
+  <link rel="stylesheet" href="css/gameplay.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <script type="importmap">{ "imports": { "three": "./js/lib/three.module.min.js" } }</script>
+</head>
+<body>
+  <div id="app">
+    <div id="stage"></div>
+    <div id="input-layer"><canvas id="overlay"></canvas></div>
+
+    <!-- ============================== HUD -->
+    <div id="hud" class="hidden" aria-live="polite">
+      <div class="hud-left">
+        <div class="hud-objective">
+          <div class="hud-level"><span id="hud-level-id">1-1</span><b id="hud-level-name">Fase</b></div>
+          <div class="hud-obj-row"><span class="obj-icon" data-icon="target"></span><span id="hud-objective">Marque um gol</span></div>
+          <div id="hud-progress" class="hud-progress"></div>
+        </div>
+        <div class="hud-attempts" id="hud-attempts" title="Tentativas"></div>
+      </div>
+      <div class="hud-right">
+        <div class="scoreboard">
+          <div class="sb-team"><i id="sb-home-color"></i><span id="sb-home">HOM</span></div>
+          <div class="sb-score" id="sb-score-home">0</div>
+          <div class="sb-min" id="sb-minute">0'</div>
+          <div class="sb-score" id="sb-score-away">0</div>
+          <div class="sb-team away"><span id="sb-away">AWY</span><i id="sb-away-color"></i></div>
+        </div>
+        <button class="icon-btn" id="btn-pause" aria-label="Pausar (Esc)" data-icon="pause"></button>
+      </div>
+    </div>
+    <div id="toasts"></div>
+    <div id="big-text"><div class="big-main"></div><div class="big-sub"></div></div>
+    <div id="hint" class="hidden"></div>
+    <div id="tutorial" class="hidden"><div class="tut-hand" data-icon="hand"></div><div class="tut-text"></div></div>
+
+    <!-- ============================== MAIN MENU -->
+    <section class="screen" id="screen-menu">
+      <div class="menu-shade"></div>
+      <div class="menu-col">
+        <div class="logo">
+          <div class="logo-mark" data-icon="logo"></div>
+          <div class="logo-text"><h1>CRAQUE</h1><p>Rumo à Glória</p></div>
+        </div>
+        <button class="btn-play" id="btn-play">
+          <span class="play-ico" data-icon="play"></span>
+          <span class="play-txt"><b>JOGAR</b><small id="play-sub">Capítulo 1 · Fase 1</small></span>
+        </button>
+        <div class="menu-grid">
+          <button class="menu-tile" data-nav="career"><span data-icon="trophy"></span><b>Carreira</b><small id="tile-career">0/25 fases</small></button>
+          <button class="menu-tile" data-nav="player"><span data-icon="shirt"></span><b>Meu Jogador</b><small>Personalizar</small></button>
+          <button class="menu-tile" data-nav="stats"><span data-icon="bars"></span><b>Estatísticas</b><small id="tile-stats">0 gols</small></button>
+          <button class="menu-tile" data-nav="achievements"><span data-icon="medal"></span><b>Conquistas</b><small id="tile-ach">0/18</small></button>
+          <button class="menu-tile" data-nav="settings"><span data-icon="gear"></span><b>Configurações</b><small>Áudio · Gráficos</small></button>
+          <button class="menu-tile" id="btn-fullscreen"><span data-icon="expand"></span><b>Tela cheia</b><small>Tecla F</small></button>
+        </div>
+      </div>
+      <div class="profile-card" id="profile-card">
+        <div class="pc-num" id="pc-num">10</div>
+        <div class="pc-info"><b id="pc-name">Jogador</b><small id="pc-club">Vila Nova Sub-19</small>
+          <div class="pc-bar"><i id="pc-bar"></i></div>
+        </div>
+        <div class="pc-stars"><span data-icon="star"></span><b id="pc-stars">0</b></div>
+      </div>
+    </section>
+
+    <!-- ============================== CAREER -->
+    <section class="screen panel-screen" id="screen-career">
+      <header class="screen-head">
+        <button class="icon-btn back" data-back aria-label="Voltar" data-icon="back"></button>
+        <h2>Carreira</h2>
+        <div class="head-chip"><span data-icon="star"></span><b id="career-stars">0</b>/75</div>
+      </header>
+      <div class="career-body">
+        <div class="career-main">
+          <div class="chapter-tabs" id="chapter-tabs"></div>
+          <div class="chapter-banner" id="chapter-banner"></div>
+          <div class="level-row" id="level-row"></div>
+        </div>
+        <aside class="career-side">
+          <div class="side-card">
+            <h3>Progresso da temporada</h3>
+            <div class="season" id="season"></div>
+          </div>
+          <div class="side-card grow">
+            <h3>Histórico de partidas</h3>
+            <ul class="history" id="history"></ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============================== MY PLAYER -->
+    <section class="screen panel-screen transparent" id="screen-player">
+      <header class="screen-head">
+        <button class="icon-btn back" data-back aria-label="Voltar" data-icon="back"></button>
+        <h2>Meu Jogador</h2>
+        <div class="head-chip">Arraste para girar</div>
+      </header>
+      <div class="player-body">
+        <div class="custom-panel" id="custom-panel">
+          <label class="field"><span>Nome</span><input id="cp-name" maxlength="16" autocomplete="off" /></label>
+          <div class="field"><span>Número da camisa</span>
+            <div class="stepper"><button id="cp-num-dec" aria-label="Diminuir">−</button><b id="cp-num">10</b><button id="cp-num-inc" aria-label="Aumentar">+</button></div>
+          </div>
+          <div class="field"><span>Cores do clube</span><div class="swatches" id="cp-kit"></div></div>
+          <div class="field"><span>Tom de pele</span><div class="swatches" id="cp-skin"></div></div>
+          <div class="field"><span>Cor do cabelo</span><div class="swatches" id="cp-hair"></div></div>
+          <div class="field"><span>Corte de cabelo</span><div class="chips" id="cp-hairstyle"></div></div>
+          <div class="field"><span>Chuteiras</span><div class="swatches" id="cp-boots"></div></div>
+        </div>
+        <div class="player-drag" id="player-drag"></div>
+      </div>
+    </section>
+
+    <!-- ============================== STATS -->
+    <section class="screen panel-screen" id="screen-stats">
+      <header class="screen-head">
+        <button class="icon-btn back" data-back aria-label="Voltar" data-icon="back"></button>
+        <h2>Estatísticas</h2>
+        <div class="head-chip" id="stats-chip"></div>
+      </header>
+      <div class="stats-grid" id="stats-grid"></div>
+    </section>
+
+    <!-- ============================== ACHIEVEMENTS -->
+    <section class="screen panel-screen" id="screen-achievements">
+      <header class="screen-head">
+        <button class="icon-btn back" data-back aria-label="Voltar" data-icon="back"></button>
+        <h2>Conquistas</h2>
+        <div class="head-chip" id="ach-chip"></div>
+      </header>
+      <div class="ach-grid" id="ach-grid"></div>
+    </section>
+
+    <!-- ============================== SETTINGS -->
+    <section class="screen panel-screen" id="screen-settings">
+      <header class="screen-head">
+        <button class="icon-btn back" data-back aria-label="Voltar" data-icon="back"></button>
+        <h2>Configurações</h2>
+        <div class="head-chip" id="save-chip">Progresso salvo localmente</div>
+      </header>
+      <div class="settings-body">
+        <div class="side-card">
+          <h3>Áudio</h3>
+          <label class="slider"><span>Master</span><input type="range" min="0" max="1" step="0.05" id="set-master" /></label>
+          <label class="slider"><span>Efeitos</span><input type="range" min="0" max="1" step="0.05" id="set-sfx" /></label>
+          <label class="slider"><span>Torcida</span><input type="range" min="0" max="1" step="0.05" id="set-crowd" /></label>
+          <label class="toggle"><span>Silenciar tudo <small>(M)</small></span><input type="checkbox" id="set-muted" /><i></i></label>
+        </div>
+        <div class="side-card">
+          <h3>Gráficos</h3>
+          <div class="field"><span>Qualidade</span><div class="chips" id="set-quality"></div></div>
+          <label class="toggle"><span>Tremor de câmera</span><input type="checkbox" id="set-shake" /><i></i></label>
+          <button class="btn ghost" id="set-fullscreen"><span data-icon="expand"></span>Alternar tela cheia</button>
+        </div>
+        <div class="side-card">
+          <h3>Jogabilidade</h3>
+          <label class="toggle"><span>Guia de trajetória</span><input type="checkbox" id="set-guide" /><i></i></label>
+          <label class="toggle"><span>Momentos em câmera lenta</span><input type="checkbox" id="set-slowmo" /><i></i></label>
+          <label class="toggle"><span>Dicas de tutorial</span><input type="checkbox" id="set-tutorials" /><i></i></label>
+          <button class="btn danger" id="set-reset">Reiniciar progresso da carreira</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== MODALS -->
+    <div class="modal hidden" id="intro-card">
+      <div class="card intro">
+        <div class="intro-top"><span id="intro-chapter">Capítulo 1</span><span id="intro-minute">23'</span></div>
+        <h2 id="intro-title">Primeiro Chute</h2>
+        <div class="intro-vs"><span id="intro-home">Seu Clube</span><b id="intro-score">0 – 0</b><span id="intro-away">Adversário</span></div>
+        <p id="intro-brief"></p>
+        <div class="intro-objs" id="intro-objs"></div>
+        <button class="btn primary big" id="btn-kickoff"><span data-icon="play"></span>DAR A SAÍDA</button>
+      </div>
+    </div>
+
+    <div class="modal hidden" id="pause-menu">
+      <div class="card pause">
+        <h2>Pausado</h2>
+        <p class="muted" id="pause-obj"></p>
+        <button class="btn primary big" id="btn-resume"><span data-icon="play"></span>Continuar</button>
+        <button class="btn" id="btn-restart"><span data-icon="refresh"></span>Reiniciar fase</button>
+        <div class="pause-audio">
+          <label class="slider"><span>Volume</span><input type="range" min="0" max="1" step="0.05" id="pause-master" /></label>
+        </div>
+        <button class="btn ghost" id="btn-quit"><span data-icon="home"></span>Sair para o menu</button>
+      </div>
+    </div>
+
+    <div class="modal hidden" id="result">
+      <div class="card result">
+        <div class="res-tag" id="res-tag">Fase 1-1</div>
+        <h2 id="res-title">FASE CONCLUÍDA</h2>
+        <div class="res-stars" id="res-stars"><i></i><i></i><i></i></div>
+        <p class="res-reason" id="res-reason"></p>
+        <ul class="res-objs" id="res-objs"></ul>
+        <div class="res-meta" id="res-meta"></div>
+        <div class="res-unlocks" id="res-unlocks"></div>
+        <div class="res-actions">
+          <button class="btn" id="res-menu"><span data-icon="home"></span>Menu</button>
+          <button class="btn" id="res-retry"><span data-icon="refresh"></span>Repetir</button>
+          <button class="btn primary" id="res-next"><span data-icon="next"></span>Continuar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal hidden" id="confirm">
+      <div class="card confirm">
+        <h2 id="confirm-title">Tem certeza?</h2>
+        <p id="confirm-text"></p>
+        <div class="res-actions">
+          <button class="btn" id="confirm-no">Cancelar</button>
+          <button class="btn danger" id="confirm-yes">Confirmar</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="rotate-hint" class="hidden"><span data-icon="rotate"></span>Gire o celular para a melhor visão<button aria-label="Fechar" id="rotate-x">✕</button></div>
+    <div id="loading"><div class="logo-mark" data-icon="logo"></div><b>CRAQUE</b><div class="load-bar"><i></i></div><small id="load-msg">Construindo o estádio…</small></div>
+    <noscript><div class="noscript">Este jogo precisa de JavaScript e WebGL.</div></noscript>
+  </div>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
