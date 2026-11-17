@@ -28,38 +28,62 @@ const CL=[
  {n:'Palmeiras',c:['#0a7d3b','#fff'],t:2,min:68,s:220,k:{p:'plain',a:'#0a7d3b',b:'#f2f2f2',sh:'#f2f2f2',so:'#0a7d3b'}},
  {n:'Flamengo',c:['#d22','#111'],t:2,min:70,s:260,k:{p:'hoops',a:'#d22',b:'#151515',sh:'#f2f2f2',so:'#d22'}},
  {n:'Internacional',c:['#d4142a','#fff'],t:1,min:57,s:95,k:{p:'plain',a:'#d4142a',b:'#f2f2f2',sh:'#f2f2f2',so:'#d4142a'}}]; // novo clube: sempre no fim para não mudar índices de saves
-const REG=['NE','NE','RJ','RS','MG','RJ','SP','SP','MG','RJ','SP','RJ','RS']; // clássicos regionais
+// Clubes extras (não entram no Brasileirão nem no mercado): estaduais, continentais e seleções.
+const XC=[
+ ['Sertão FC','NE','est',0,'#c98a1b','#2b2b2b','stripes'],['Litoral EC','NE','est',0,'#1aa3a3','#fff','plain'],
+ ['Pampa FC','RS','est',0,'#2f7a2f','#ffd400','hoops'],['Serra Gaúcha EC','RS','est',0,'#7a1f1f','#fff','sash'],
+ ['Minas Velho FC','MG','est',0,'#5a5a5a','#ffd400','plain'],['Vale do Aço EC','MG','est',0,'#1f3a7a','#ff7a00','stripes'],
+ ['Interior Paulista FC','SP','est',0,'#7a3fbf','#fff','band'],
+ ['Río Plata (ARG)','','lib',2,'#6cb4ee','#fff','stripes'],['Celeste del Este (URU)','','lib',2,'#4aa3df','#111','plain'],['Deportivo Andino (COL)','','lib',2,'#ffd400','#1b3a8a','plain'],
+ ['Sol de Asunción (PAR)','','lib',1,'#d22','#fff','stripes'],['Pacífico Lima (PER)','','lib',1,'#fff','#d22','sash'],['Altiplano FC (BOL)','','lib',1,'#2b8a3e','#fff','plain'],['Austral Santiago (CHI)','','lib',2,'#fff','#111','band'],
+ ['Brasil','','sel',2,'#ffdf00','#0a7d3b','plain','#1f4fd8'],['Argentina','','sel',2,'#8ecdf5','#fff','stripes','#151515'],['Uruguai','','sel',2,'#5aa9e6','#fff','plain','#151515'],['Colômbia','','sel',2,'#ffd400','#1b3a8a','plain','#1b3a8a'],['Alemanha','','sel',2,'#f2f2f2','#151515','plain','#151515'],['França','','sel',2,'#1b2f6b','#fff','plain','#fff']];
+const NBR=13; // clubes 0-12: Brasileirão e mercado
+const REG=['NE','NE','RJ','RS','MG','RJ','SP','SP','MG','RJ','SP','RJ','RS'];
+XC.forEach(([n,reg,x,t,a,b,p,sh])=>{CL.push({n,c:[a,b],t,min:99,s:0,x,k:{p,a,b,sh:sh||(p==='plain'?b:a),so:a}});REG.push(reg)});
+const BR=[...Array(NBR).keys()],BRA=CL.findIndex(c=>c.n==='Brasil');
+const isBR=i=>i<NBR;
 const GKC=['#ff9f1c','#a3e635','#22d3ee','#e879f9','#facc15','#fb7185'];
-const FN=['Rafa','Thiago','Léo','Caio','Davi','Enzo','Bruno','Vitor','Mateus','Nico'],LN=['Lima','Souza','Costa','Rocha','Alves','Neves','Dias','Pinto','Melo','Cruz'];
-const sqd=i=>Array.from({length:5},(_,j)=>({n:FN[(i*3+j*2)%10]+' '+LN[(i*7+j*3)%10],num:[1,4,5,8,9][j],pos:['Goleiro','Zagueiro','Volante','Meia','Atacante'][j],o:40+CL[i].t*8+(i*5+j*3)%9}));
+const FN=['Rafa','Thiago','Léo','Caio','Davi','Enzo','Bruno','Vitor','Mateus','Nico','João','Pedro','Lucas','Igor','Murilo','Kauã'],LN=['Lima','Souza','Costa','Rocha','Alves','Neves','Dias','Pinto','Melo','Cruz','Ramos','Barros','Teixeira','Moura','Farias','Prado'];
+const FNX=['Matías','Santiago','Facundo','Juan','Diego','Lukas','Hugo','Nicolás'],LNX=['González','Pereyra','Suárez','Ríos','Vega','Müller','Martin','Fernández'];
+const sqd=i=>{const x=CL[i].x==='lib'||(CL[i].x==='sel'&&i!==BRA),F=x?FNX:FN,L=x?LNX:LN;return Array.from({length:5},(_,j)=>({n:F[(i*3+j*5)%F.length]+' '+L[(i*7+j*3)%L.length],num:[1,4,5,8,9][j],pos:['Goleiro','Zagueiro','Volante','Meia','Atacante'][j],o:40+CL[i].t*8+(i*5+j*3)%9}))};
 const AN={speed:'Velocidade',shoot:'Finalização',pass:'Passe',dribble:'Drible',defense:'Defesa',physical:'Físico'};
 const POS={Atacante:{shoot:6,speed:2},'Meia-atacante':{pass:5,dribble:3},'Ponta-direita':{speed:6,dribble:3},'Ponta-esquerda':{speed:6,dribble:3},Volante:{defense:8,physical:4},Zagueiro:{defense:10,physical:5,shoot:-8},Lateral:{speed:5,defense:5},Goleiro:{defense:8}};
 const PAB={Atacante:'ATA','Meia-atacante':'MEI','Ponta-direita':'PD','Ponta-esquerda':'PE',Volante:'VOL',Zagueiro:'ZAG',Lateral:'LAT',Goleiro:'GOL',Meia:'MEI'};
-const def=()=>({name:'Gabriel Silva',pos:'Meia-atacante',foot:'Direito',num:10,age:16,season:2026,lvl:0,club:0,sal:20,trs:0,rep:0,money:0,energy:100,morale:70,attrs:{speed:48,shoot:46,pass:50,dribble:52,defense:32,physical:47},G:0,Gl:0,A:0,W:0,D:0,L:0,fx:0,hist:[],feed:['Bem-vindo à base. O treinador quer ver você em campo.'],made:0,tmsg:'Escolha um treino. Cada sessão custa 20 de energia.',
- Sv:0,T:{j:0,g:0,a:0,sv:0},inv:{boot:0,fisio:0,pt:0,emp:0,psi:0},goals:null,gs:0,tro:[],offers:[],conv:0,evq:null});
+// Estilos de jogo (afetam a faixa da barra nas opções do atributo e o ganho de treino)
+const STY={Finalizador:{a:['shoot'],d:'Mais precisão nas finalizações e pênaltis.'},Driblador:{a:['dribble'],d:'Drible mais fácil; sofre mais faltas.'},Armador:{a:['pass'],d:'Passes e assistências mais fáceis.'},Velocista:{a:['speed'],d:'Arrancadas e antecipações mais fáceis.'},
+ Xerife:{a:['defense','physical'],d:'Desarmes e divididas mais fáceis.'},Muralha:{a:['defense'],d:'Defesas de reflexo mais fáceis.'},'Goleiro-líbero':{a:['speed'],d:'Saídas do gol mais fáceis.'}};
+const STY_POS=p=>p==='Goleiro'?['Muralha','Goleiro-líbero']:['Zagueiro','Volante','Lateral'].includes(p)?['Xerife','Velocista','Armador']:['Finalizador','Driblador','Armador','Velocista'];
+const PERS={Profissional:'Recupera mais rápido e sofre menos no banco.',Líder:'Ganha a confiança do treinador mais rápido e anima o time.',Temperamental:'Moral oscila mais e leva mais cartões, mas cresce em clássicos.',Estrela:'Ganha mais fama e valor de mercado, mas odeia o banco.'};
+const SPEC={shoot:'Chute colocado',pass:'Visão de jogo',dribble:'Drible desconcertante',speed:'Arrancada',defense:'Desarme limpo',physical:'Imposição física'};
 const OPT={a:[['Chutar','shoot',.55,'Gol direto, risco alto'],['Driblar','dribble',.5,'Passa pelo marcador'],['Passar','pass',.42,'Chance de assistência']],d:[['Desarmar','defense',.5,'Tira a bola no pé'],['Antecipar','speed',.45,'Corta o passe'],['Afastar','physical',.4,'Segura no corpo']],g:[['Espalmar','defense',.5,'Defesa difícil'],['Sair do gol','speed',.45,'Fecha o ângulo'],['Encaixar','physical',.4,'Segura firme']]};
 const SC={a:'Você recebeu na área! O que faz?',d:'Ataque do rival! Hora de defender.',g:'Chute perigoso na sua direção!'};
-const mkTab=()=>CL.map(()=>({p:0,j:0,v:0,e:0,d:0,gp:0,gc:0}));
+const COMP={est:'Estadual',bra:'Brasileirão',cdb:'Copa do Brasil',lib:'Libertadores',sel:'Seleção'};
+const KO_N=['Quartas de final','Semifinal','Final'];
 
-/* ================= 3. ESTADO E SAVE (chave 'bfc2' mantida) ================= */
+/* ================= 3. ESTADO E SAVE (v4, chave 'bfc2' mantida + backup + slots) ================= */
+const SAVE_V=4;
+const def=()=>({v:SAVE_V,name:'Gabriel Silva',pos:'Meia-atacante',foot:'Direito',num:10,age:16,season:2026,lvl:0,club:0,sal:20,trs:0,rep:0,money:0,energy:100,morale:70,
+ attrs:{speed:48,shoot:46,pass:50,dribble:52,defense:32,physical:47},G:0,Gl:0,A:0,W:0,D:0,L:0,Sv:0,hist:[],feed:[],made:0,tmsg:'Escolha um treino. Cada sessão gasta 1 ação da semana.',
+ T:{j:0,g:0,a:0,sv:0},inv:{boot:0,fisio:0,pt:0,emp:0,psi:0},goals:null,gs:0,tro:[],offers:[],conv:0,evq:null,sp:0,
+ style:'Armador',pers:'Profissional',pot:78,xp:{speed:0,shoot:0,pass:0,dribble:0,defense:0,physical:0},ct:55,coach:null,bench:0,inj:null,susp:0,yc:0,
+ con:{end:2027,loan:null},mv:0,mvh:[],sl:[],wk:0,ap:2,comp:null,news:[],th:[],sh:[],rec:{gs:0,gm:0,n:0},interest:{},qlib:0,rival:null,crisis:0,opt:{snd:1},ask:0});
 let S=def(),M=null;
-try{const d=localStorage.getItem('bfc2');if(d)S={...def(),...JSON.parse(d)}}catch(e){}
-if(S.club>=CL.length)S.club=0;S.tab=S.tab||mkTab();S.rd=S.rd||0;S.sp=S.sp||0;
-while(S.tab.length<CL.length)S.tab.push({p:0,j:0,v:0,e:0,d:0,gp:0,gc:0}); // migração: clube novo entra zerado
-S.inv={...def().inv,...(S.inv||{})};S.T={...def().T,...(S.T||{})};
-const sv=()=>{try{localStorage.setItem('bfc2',JSON.stringify(S))}catch(e){}};
 const ovr=()=>Math.round(Object.values(S.attrs).reduce((a,b)=>a+b,0)/6);
-const feed=t=>{S.feed.unshift(t);S.feed=S.feed.slice(0,8)};
 const role=()=>S.pos==='Goleiro'?'g':['Zagueiro','Lateral','Volante'].includes(S.pos)?'d':'a';
-const oppN=()=>{const o=CL.map((_,i)=>i).filter(i=>i!==S.club);return o[(S.rd||0)%o.length]};
-const table=()=>CL.map((_,i)=>i).sort((a,b)=>{const A=S.tab[a],B=S.tab[b];return B.p-A.p||(B.gp-B.gc)-(A.gp-A.gc)||B.gp-A.gp});
-function tr(a,b,x,y){const A=S.tab[a],B=S.tab[b];A.j++;B.j++;A.gp+=x;A.gc+=y;B.gp+=y;B.gc+=x;if(x>y){A.v++;A.p+=3;B.d++}else if(x<y){B.v++;B.p+=3;A.d++}else{A.e++;B.e++;A.p++;B.p++}}
-const gl=t=>{let g=0;for(let i=0;i<5;i++)if(RN()<.18+CL[t].t*.07)g++;return g};
-// Ambiente da partida — determinístico por rodada (a prévia bate com o jogo)
-function envOf(oi){const r=rng(hash(S.season+':'+S.rd+':'+S.club+':'+oi)),home=S.rd%2===0,fin=S.rd===CL.length-2,cls=REG[S.club]===REG[oi];
- const night=fin||S.rd%3===2,tarde=!night&&S.rd%3===1,rain=r()<.2,model=S.lvl===0?(home?2:1):S.lvl===1?(home?1:0):0;
+const gl=(t,b=0)=>{let g=0;for(let i=0;i<5;i++)if(RN()<.17+CL[t].t*.07+b)g++;return g};
+// carrega com fallback para o backup se o principal estiver corrompido
+function readSave(k){try{const d=localStorage.getItem(k);if(!d)return null;const o=JSON.parse(d);return o&&typeof o==='object'&&o.attrs?o:null}catch(e){return null}}
+let loadNote='';
+(()=>{let o=readSave('bfc2');if(!o&&localStorage.getItem('bfc2')){o=readSave('bfc2_bak');if(o)loadNote='O save principal estava corrompido: carregamos o backup automático.'}if(o)S={...def(),...o}})();
+let svT=0;
+function sv(){try{const cur=localStorage.getItem('bfc2');if(cur)localStorage.setItem('bfc2_bak',cur);S.saved=Date.now();localStorage.setItem('bfc2',JSON.stringify(S))}catch(e){toast&&toast('Não foi possível salvar (armazenamento cheio?)')}}
+const feed=(t,cat='voce',ic='news')=>news(t,null,cat,ic);
+function news(t,d,cat='voce',ic='news'){S.news.unshift({t,d:d||'',cat,ic,s:S.season,w:S.wk});S.news=S.news.slice(0,60)}
+// Ambiente da partida — determinístico por compromisso (a prévia bate com o jogo)
+function envOf(fx){const oi=fx.opp,r=rng(hash(S.season+':'+S.wk+':'+fx.my+':'+oi)),home=fx.home,fin=!!fx.final,cls=REG[fx.my]&&REG[fx.my]===REG[oi];
+ const night=fin||fx.comp==='lib'||S.wk%3===2,tarde=!night&&S.wk%3===1,rain=r()<.2,model=fx.comp==='sel'||fx.comp==='lib'||fin?0:S.lvl===0?(home?2:1):S.lvl===1?(home?1:0):0;
  return{home,fin,cls,night,tarde,rain,model,dens:[.5,.75,.95][S.lvl]*(cls||fin?1.1:1)}}
-const envTxt=e=>[e.night?'Noite':e.tarde?'Fim de tarde':'Dia',e.rain?'Chuva':'',e.home?'Em casa':'Fora',e.cls?'Clássico':'',e.fin?'Última rodada':''].filter(Boolean).join(' · ');
+const envTxt=e=>[e.night?'Noite':e.tarde?'Fim de tarde':'Dia',e.rain?'Chuva':'',e.home?'Em casa':'Fora',e.cls?'Clássico':'',e.fin?'Decisão':''].filter(Boolean).join(' · ');
 
 /* ================= 4. ÁUDIO (WebAudio, sem arquivos) ================= */
 const SND={on:(()=>{try{return localStorage.getItem('bfc3snd')!=='0'}catch(e){return true}})(),ac:null,nb:null,amb:null,ag:null,

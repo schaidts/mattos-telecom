@@ -58,6 +58,8 @@ function pose(p,t){const v=p.v||0,ph=p.rp||0,o={hx:0,hy:-5,ln:0,F1:[-1.2,0],F2:[
  case 'catch':o.H1=[2.2,-10];o.H2=[2.8,-10.6];o.ln=.7;o.hy=-4.6;break;
  case 'smother':o.rot=1.45;o.hy=-1.8;o.H1=[1,-15];o.H2=[2,-15.5];o.F1=[-1,0];o.F2=[1,-.6];o.ex=3;break;
  case 'gksad':o.hy=-1.6;o.F1=[2.2,0];o.F2=[3.2,0];o.H1=[-1.2,-3.6];o.H2=[1.2,-3.6];o.hd=1;o.ex=2;break;
+ case 'whistle':o.H2=[1.6,-13.4];o.H1=[-1.2,-7];break;
+ case 'card':o.H2=[1.2,-18.5];o.H1=[-1.2,-7];break;
  case 'throw':{const e=eo(t/.35);o.H1=[lerp(-2,2.6,e),lerp(-16,-10,e)];o.H2=[lerp(-1.6,3.4,e),lerp(-16.5,-10.6,e)];o.F1=[-1.6,0];o.F2=[1.8,0];break}
  }
  if(p.rot)o.rot+=p.rot;o.z+=p.z||0;return o}
@@ -103,6 +105,7 @@ function spr(x,p,k,T){const L=p.look,sk=SKIN[L.sk],gk=p.k==='g',f=p.f||1,t=p.pt|
  if(L.br===2){R(hX+.2,hY+3,2.2,1.6,hc);R(hX+1.4,hY+3.2,.8,.5,sk[0])}else if(L.br===1)R(hX,hY+3.8,2.4,.6,shade(sk[1],.8));
  if(L.hb)R(hX-2,hY+.4,4.4,.7,tr);
  arm(o.H2,0);
+ if(p.cur==='card')R(o.H2[0]+o.ln-.6,o.H2[1]-3,1.8,2.4,p.cardc||'#ffd400');if(p.cur==='whistle')R(o.H2[0]+o.ln+.4,o.H2[1]-.4,.8,.8,'#c9c9c9');
  x.restore()}
 function shadowOf(x,p,lights){const o=p.cur,lay=o==='slide'||o==='down'||o==='smother'||o==='gksad',z=(p.z||0)+(o==='header'||o==='celebrate'?6:0),w=(lay?22:14)*(1-Math.min(.4,z/40)),a=.33*(1-Math.min(.6,z/30));
  x.fillStyle=`rgba(0,0,0,${a})`;
