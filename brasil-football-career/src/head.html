@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#06120d">
+<title>Brasil Football Career 3.0</title><link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+/* ===== Tokens ===== */
+:root{--bg:#06120d;--bg2:#0b1f17;--pn:#0f2519;--pn2:#173a27;--pn3:#1f4b33;--ln:#2f6a47;--ln2:#4f9a6c;--sh:#020805;
+--yl:#ffd400;--yl2:#fff1a0;--bl:#3b7bff;--gr:#3ddc84;--rd:#ff5a5f;--or:#ff9f1c;--tx:#eef7e8;--mt:#8fb3a0;
+--px:'Press Start 2P',monospace;--vt:VT323,monospace;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;color:var(--tx);font:22px/1.2 var(--vt);
+ background:var(--bg) radial-gradient(ellipse at 85% -10%,#12407066,transparent 50%),radial-gradient(ellipse at 0 0,#ffd40012,transparent 40%);
+ padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,#0000 0 3px,#00000014 3px 4px);z-index:20}
+h1,h2,h3,.px{font-family:var(--px);line-height:1.5;margin:0;font-weight:400}
+h1{font-size:14px;color:var(--yl);text-shadow:2px 2px 0 #000}
+h2{font-size:10px;color:var(--gr);margin-bottom:10px;letter-spacing:.5px;display:flex;align-items:center;gap:8px}
+h2 svg{flex:none}
+small,.mt{color:var(--mt)}.yl{color:var(--yl)}.gr{color:var(--gr)}.rd{color:var(--rd)}p{margin:5px 0}
+.app{max-width:1020px;margin:auto;padding:12px 12px 24px}
+svg.ic{width:16px;height:16px;image-rendering:pixelated;shape-rendering:crispEdges;vertical-align:-2px}
+/* ===== Header / nav ===== */
+header{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:4px 0 12px}
+.logo{display:flex;align-items:center;gap:10px}.logo b{font:9px var(--px);background:var(--yl);color:#102000;padding:3px 5px;box-shadow:2px 2px 0 #000}
+.pills{display:flex;gap:6px;flex-wrap:wrap}.pill{background:var(--pn);border:2px solid var(--ln);padding:3px 9px;color:var(--yl);display:flex;gap:5px;align-items:center}
+nav{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:12px;position:sticky;top:0;z-index:4;padding:6px 0;background:linear-gradient(var(--bg) 70%,#0000)}
+nav button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:7px 4px;font-size:19px}
+nav button svg.ic{width:20px;height:20px}
+/* ===== Controls ===== */
+button{font:inherit;color:var(--tx);background:var(--pn2);border:2px solid var(--ln);padding:9px 12px;cursor:pointer;box-shadow:inset 0 2px 0 #ffffff14,0 4px 0 var(--sh);touch-action:manipulation;transition:background .12s,filter .12s}
+button:hover:not(:disabled){filter:brightness(1.15)}
+button:active:not(:disabled){transform:translateY(3px);box-shadow:0 1px 0 var(--sh)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--yl);outline-offset:2px}
+button.on,button.go{background:var(--yl);border-color:var(--yl2);color:#1b2a00}
+button:disabled{opacity:.4;cursor:not-allowed}
+.card{background:linear-gradient(180deg,var(--pn) ,#0c1f15);border:2px solid var(--ln);box-shadow:0 0 0 2px var(--sh),5px 5px 0 2px var(--sh);padding:14px;margin-bottom:14px;position:relative}
+.card::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:#ffffff12}
+label{display:block;color:var(--mt);margin:9px 0 3px}
+input,select{font:inherit;width:100%;background:#04100a;color:var(--tx);border:2px solid var(--ln);padding:7px}
+table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:4px 6px;border-bottom:1px solid #1e4a32;font-weight:400}
+tr.me td{color:var(--yl)}
+.hidden{display:none!important}
+.row{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center}
+.g4>div{background:#04100a88;border:1px solid #1e4a32;padding:6px 2px}
+.g4 b{display:block;font:14px var(--px);color:var(--tx);margin-top:4px}
+.bar{height:12px;background:#04100a;border:2px solid #1e4a32;margin:3px 0 8px;position:relative}.bar span{display:block;height:100%;transition:width .5s;box-shadow:inset 0 -3px 0 #0003,inset 0 2px 0 #fff3}
+.f{display:inline-grid;place-items:center;width:26px;height:26px;margin-right:4px;font:10px var(--px);color:#04100a;box-shadow:2px 2px 0 #000}
+.f.V{background:var(--gr)}.f.E{background:var(--yl)}.f.D{background:var(--rd)}
+.kb{display:inline-block;width:26px;height:26px;image-rendering:pixelated;vertical-align:middle}
+/* ===== Home ===== */
+.hero{display:flex;gap:16px;align-items:center;background:linear-gradient(110deg,#0d4a2a,#0e2a45 70%,#0b1f3a);overflow:hidden}
+.hero::after{content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;background:radial-gradient(#ffd40022,#0000 70%)}
+.hero>div:nth-child(2){flex:1;min-width:150px}
+#av{width:112px;height:112px;image-rendering:pixelated;border:3px solid var(--yl);box-shadow:0 0 0 3px #000,4px 4px 0 3px #000;animation:bob 1.2s steps(2) infinite}
+.ovr{text-align:center;background:linear-gradient(160deg,#ffe36a,#c99a00);color:#2a2000;padding:10px 12px 8px;box-shadow:0 0 0 3px #000,4px 4px 0 3px #000;clip-path:polygon(0 0,100% 0,100% 85%,50% 100%,0 85%)}
+.ovr b{display:block;font:24px var(--px)}.ovr small{display:block;font:8px var(--px);color:#4a3a00;margin-top:4px}
+.tag{display:inline-block;font:8px var(--px);padding:3px 6px;background:#04100a;border:1px solid var(--ln);color:var(--mt);margin:2px 4px 2px 0}
+.feed p{display:flex;gap:8px;align-items:flex-start;padding:4px 0;border-bottom:1px dashed #1e4a32}
+.feed p:last-child{border:0}
+/* ===== Train ===== */
+.tr{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.tr button{text-align:left;display:flex;gap:10px;align-items:center}
+.tr button svg.ic{width:28px;height:28px;flex:none}
+#tc{display:block;width:100%;image-rendering:pixelated;border:2px solid var(--ln);background:#2c7a46;margin:8px 0}
+/* ===== Match ===== */
+.fix{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;text-align:center;margin:10px 0}
+.fix img{width:56px;height:56px;image-rendering:pixelated;display:block;margin:0 auto 4px}
+.fix .vs{font:12px var(--px);color:var(--yl)}
+.hud{display:grid;grid-template-columns:1fr auto 1fr auto;align-items:center;gap:6px;margin-bottom:8px;background:linear-gradient(#0a1a33,#081226);border:2px solid #24467a;box-shadow:0 0 0 2px #000;padding:4px 6px}
+.hud .tm{display:flex;align-items:center;gap:6px;font:9px var(--px);overflow:hidden;white-space:nowrap}.hud .tm.r{justify-content:flex-end}
+.hud .tm span{overflow:hidden;text-overflow:ellipsis}
+.hud #sc{font:16px var(--px);color:#fff;background:#000;padding:4px 8px;border:1px solid #24467a}
+.hud #clk{font:10px var(--px);color:var(--yl);background:#000;padding:5px 6px;min-width:44px;text-align:center}
+#vs{display:block;text-align:center;margin:-4px 0 6px}
+canvas#pitch{display:block;width:100%;max-width:760px;margin:auto;aspect-ratio:720/500;background:#0b2218;border:3px solid #e9f5df;box-shadow:0 0 0 3px #000;touch-action:manipulation;image-rendering:pixelated}
+#ev{min-height:34px;color:var(--yl);text-align:center;margin:8px 0 4px;font:13px/1.6 var(--px);text-shadow:2px 2px 0 #000}
+#ev.pop{animation:pop .55s}
+#mv{max-width:760px;margin:auto}
+#mv .q{font:10px/1.6 var(--px);color:var(--yl);margin:6px 0 10px;text-align:center}
+.opt{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.opt button{text-align:left;padding:8px;display:flex;flex-direction:column;gap:3px;animation:in .3s backwards}
+.opt button:nth-child(2){animation-delay:.06s}.opt button:nth-child(3){animation-delay:.12s}
+.opt b{font:9px/1.5 var(--px);color:var(--yl)}
+.rk{display:flex;gap:2px}.rk i{width:8px;height:8px;background:#04100a;border:1px solid var(--ln)}.rk i.on{background:var(--or)}
+#tb{position:relative;height:34px;background:repeating-linear-gradient(90deg,#04100a 0 10px,#071a10 10px 20px);border:3px solid var(--ln);margin:10px 0;box-shadow:0 0 0 2px #000}
+#zn{position:absolute;top:0;bottom:0;background:#3ddc8466;border-inline:2px solid var(--gr)}
+#zp{position:absolute;top:0;bottom:0;left:25%;width:50%;background:#ffd40088;box-shadow:0 0 10px #ffd400}
+#cur{position:absolute;top:-6px;bottom:-6px;width:6px;margin-left:-3px;background:#fff;box-shadow:0 0 0 2px #000,0 0 10px #fff}
+#res .score{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;gap:6px;margin:10px 0}
+#res .score b{font:26px var(--px);color:#fff;text-shadow:3px 3px 0 #000}
+#res .score img{width:48px;height:48px;image-rendering:pixelated;display:block;margin:0 auto 4px}
+.rating{display:inline-block;font:16px var(--px);padding:8px 10px;color:#04100a;box-shadow:3px 3px 0 #000}
+.lg p{display:flex;gap:10px;border-bottom:1px dashed #1e4a32;padding:3px 0}.lg p i{font-style:normal;color:var(--yl);min-width:36px}
+/* ===== Career / market ===== */
+.atr{display:grid;grid-template-columns:22px 1fr 34px;gap:4px 8px;align-items:center}
+.atr .bar{grid-column:1/-1;margin:0 0 6px}
+#radar{width:100%;max-width:240px;display:block;margin:0 auto 8px}
+.step{padding:8px 10px;border-left:4px solid var(--ln);margin:6px 0;color:var(--mt)}.step.cur{border-color:var(--yl);color:var(--tx);background:#183a28}.step.ok{border-color:var(--gr)}
+.board{position:relative;aspect-ratio:3/2;background:repeating-linear-gradient(90deg,#2c7a46 0 12.5%,#318850 12.5% 25%);border:3px solid #e9f5df;margin-bottom:10px;overflow:hidden}
+.board::before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:2px solid #e9f5dfaa}
+.board::after{content:"";position:absolute;left:50%;top:50%;width:22%;aspect-ratio:1;border:2px solid #e9f5dfaa;border-radius:50%;transform:translate(-50%,-50%)}
+.slot{position:absolute;transform:translate(-50%,-50%);text-align:center;z-index:1;font-size:16px;line-height:1;width:72px}
+.slot img{width:40px;height:40px;image-rendering:pixelated;display:block;margin:0 auto 2px;border:2px solid #000;background:#0b1f17}
+.slot.me img{border-color:var(--yl);box-shadow:0 0 0 2px #000,0 0 12px var(--yl)}
+.slot span{background:#000c;padding:1px 4px}
+.pt{width:28px;height:28px;image-rendering:pixelated;vertical-align:middle;border:1px solid #000}
+.off{padding:8px 0;border-bottom:1px solid #1e4a32}
+/* ===== Modals / menu ===== */
+.modal{position:fixed;inset:0;background:#000d;display:grid;place-items:center;padding:14px;z-index:10;overflow:auto;animation:fade .25s}
+.modal .card{max-width:480px;width:100%;margin:0;animation:pop2 .3s}
+.mn{max-width:400px;width:100%;text-align:center;background:linear-gradient(#10261c,#0a1a12);border:3px solid var(--yl);padding:14px;box-shadow:0 0 0 4px #000,0 0 60px #ffd40033;animation:pop2 .35s}
+.mn canvas{width:100%;image-rendering:pixelated;border:2px solid var(--ln);margin-bottom:10px;display:block}
+.mn h1{font-size:15px;line-height:1.7}.mn h1 span{display:block;font-size:28px;color:#fff;text-shadow:3px 3px 0 #c99a00,6px 6px 0 #000;margin-top:4px}
+.mn button{display:block;width:100%;margin:8px 0}
+.sw{display:flex;gap:6px;flex-wrap:wrap}.sw button{width:30px;height:30px;padding:0;box-shadow:0 3px 0 #000}.sw button.on{outline:3px solid var(--yl);outline-offset:1px}
+.cre{display:grid;grid-template-columns:1fr 120px;gap:12px}.cre canvas{width:120px;height:120px;image-rendering:pixelated;border:3px solid var(--yl);background:#0b1f17}
+@media(max-width:700px){.g2{grid-template-columns:1fr}.hero{flex-wrap:wrap}.app{padding:8px 8px 20px}.opt{grid-template-columns:1fr}.hud .tm span{display:none}}
+@media(max-width:420px){.cre{grid-template-columns:1fr}.cre canvas{margin:auto}nav button{font-size:16px}.tr{grid-template-columns:1fr}}
+/* ===== Motion ===== */
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+@keyframes fade{from{opacity:0}}
+@keyframes pop{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.25)}100%{transform:none;opacity:1}}
+@keyframes pop2{0%{transform:scale(.85);opacity:0}100%{transform:none;opacity:1}}
+@keyframes bob{50%{transform:translateY(-3px)}}
+section.enter{animation:in .28s}
+.card{animation:in .3s backwards}.g2 .card:nth-child(2){animation-delay:.05s}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body><div class="app">
+<header><div class="logo"><h1>BRASIL FOOTBALL CAREER</h1><b>3.0</b></div>
+<div class="pills"><button id="hm" style="padding:2px 8px">Menu</button><button id="snd" style="padding:2px 8px" aria-label="Som"></button><span class="pill" id="p1"></span><span class="pill" id="p2"></span><span class="pill" id="p3"></span></div></header>
+<nav id="nav"></nav>
+<section id="home"></section>
+<section id="train" class="hidden"></section>
+<section id="play" class="hidden">
+<div class="card" id="fx"></div>
+<div class="card hidden" id="arena">
+ <div class="hud"><div class="tm"><img class="kb" id="k0" alt=""><span id="n0"></span></div><b id="sc">0 x 0</b><div class="tm r"><span id="n1"></span><img class="kb" id="k1" alt=""></div><span id="clk">0'</span></div>
+ <small id="vs"></small>
+ <canvas id="pitch" width="720" height="500"></canvas>
+ <div id="ev"></div>
+ <div id="mv"></div><div id="res" class="hidden"></div>
+</div></section>
+<section id="career" class="hidden"></section>
+<section id="mkt" class="hidden"></section>
+</div>
+<div class="modal" id="menu"><div class="mn"><canvas id="mc" width="320" height="180"></canvas><h1>BRASIL FOOTBALL CAREER<span>3.0</span></h1><p class="mt">Do campinho ao estádio lotado</p><button class="go" id="mcont">Continuar carreira</button><button id="mnew">Nova carreira</button><button id="mhow">Como jogar</button><p id="mhelp" class="hidden mt">Treine para evoluir atributos. Nas partidas, o jogo avança até os seus lances: escolha a jogada (1, 2, 3) e pare o marcador na faixa verde (Espaço ou toque). No centro dourado o acerto é perfeito. Suba de categoria e assine com clubes maiores no Mercado.</p></div></div>
+<div class="modal hidden" id="mod"><div class="card"><h2>Seu primeiro contrato</h2><p>Crie seu atleta e entre na base Sub-17.</p>
+<div class="cre"><div>
+<label for="nn">Nome</label><input id="nn" maxlength="22" value="Gabriel Silva">
+<label for="np">Posição</label><select id="np"><option>Meia-atacante</option><option>Atacante</option><option>Ponta-direita</option><option>Ponta-esquerda</option><option>Volante</option><option>Zagueiro</option><option>Lateral</option><option>Goleiro</option></select>
+</div><canvas id="cp" width="64" height="64"></canvas></div>
+<label>Tom de pele</label><div class="sw" id="ssk"></div>
+<label for="nh">Cabelo</label><select id="nh"></select>
+<label>Cor do cabelo</label><div class="sw" id="shc"></div>
+<label for="nf">Pé dominante</label><select id="nf"><option>Direito</option><option>Esquerdo</option><option>Ambos</option></select>
+<label for="nc">Clube da base</label><select id="nc"><option value="0">Fortaleza</option><option value="1">Bahia</option><option value="2">Vasco</option></select>
+<label for="nu">Camisa</label><input id="nu" type="number" min="1" max="99" value="10">
+<p></p><button class="go" id="mk" style="width:100%">Começar carreira</button></div></div>
+<script>
