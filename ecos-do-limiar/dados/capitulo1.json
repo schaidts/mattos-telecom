@@ -1,0 +1,285 @@
+{
+  "_fonte": "Ecos do Limiar — Roteiro do Capítulo 1, de Débora. Texto transcrito sem alterações. Tipos de fala: narr (caixa de narração), fala (balão), pens (pensamento), grito (balão pontiagudo), voz (balão escuro, letras brancas), tremido (balão tremido do Ecoante), sfx (onomatopeia), final (caixa final). 'pos' opcional em cada fala: [x%, y%] sobre a página, para quando a arte existir.",
+  "titulo": "Ecos do Limiar",
+  "capitulo": "Capítulo 1",
+  "autora": "Débora",
+  "sinopse": "No continente de Varyn, uma fronteira invisível chamada Limiar separa o mundo humano do Abismo, um plano de sombra viva. A cada século, durante o Eclipse Rubro, o Limiar enfraquece. Neste ciclo ele escolheu uma Chave: alguém capaz de selar o Abismo para sempre, ou de abri-lo de vez.",
+  "generos": ["Ação", "Fantasia sombria", "Mistério"],
+  "classificacao": "14+",
+  "personagens": [
+    {"id": "kael", "nome": "Kael Varyn", "idade": 17, "papel": "Protagonista", "principal": true, "fichas": ["kael-pb"],
+     "bio": "Aprendiz de ferreiro na Cidade Baixa, criado pelo mestre Bram. Impulsivo, teimoso, protege os mais fracos sem pensar. Há meses sonha com uma voz que chama seu nome."},
+    {"id": "lyra", "nome": "Lyra Sedryn", "idade": 18, "papel": "Maga da Ordem do Véu", "principal": true, "fichas": ["lyra-cor", "lyra-pb"],
+     "bio": "Maga da Ordem do Véu, enviada para encontrar a Chave. Calma, estratégica, leal. Esconde que perdeu a irmã para o Abismo."},
+    {"id": "dorian", "nome": "Dorian Velt", "idade": 18, "papel": "Melhor amigo e rival", "principal": true, "fichas": ["dorian-cor", "dorian-pb"],
+     "bio": "Melhor amigo e rival de Kael, filho de um mercador. Carismático, provocador, ótimo com duas adagas. Esconde o medo com piadas."},
+    {"id": "sienna", "nome": "Sienna Roth", "idade": 19, "papel": "Guarda de Vel Aren", "principal": true, "fichas": ["sienna-cor", "sienna-pb"],
+     "bio": "A espadachim mais jovem da Guarda de Vel Aren. Determinada, espírito livre, coloca a justiça acima das ordens."},
+    {"id": "bram", "nome": "Mestre Bram", "idade": 55, "papel": "Ferreiro", "principal": false, "fichas": ["bram-cor", "bram-pb"],
+     "bio": "Ferreiro que criou Kael desde bebê. Rabugento e carinhoso. Sabe mais do que conta sobre a origem do garoto."},
+    {"id": "pip", "nome": "Pip", "idade": 8, "papel": "Vendedora de pão", "principal": false, "fichas": ["pip-cor", "pip-pb"],
+     "bio": "Menina órfã que vende pão na praça e segue Kael para todo lado."},
+    {"id": "morvain", "nome": "Morvain, o Arauto", "idade": null, "papel": "Antagonista", "principal": false, "fichas": ["morvain-cor", "morvain-pb"],
+     "bio": "Líder dos que querem abrir o Abismo. Figura encapuzada que observa Kael. Rosto sempre na sombra."}
+  ],
+  "episodios": [
+    {
+      "n": 1, "titulo": "O Sonho",
+      "resumo": "Kael sonha com o Abismo, vive um dia comum em Vel Aren e, à noite, o Eclipse Rubro começa.",
+      "paginas": [
+        {"id": "ep1-p01", "quadros": [
+          {"tam": "largo", "cena": "Vista panorâmica de Vel Aren à noite, cidade-fortaleza gótica no alto de um penhasco, catedral negra com torres pontiagudas, casas amontoadas descendo a encosta, montanhas ao fundo, céu carregado de nuvens.",
+           "falas": [["narr", "", "No continente de Varyn, existe uma fronteira invisível…"]]},
+          {"tam": "largo", "cena": "O céu sobre as montanhas, com uma linha fina e tremulante atravessando as nuvens, como uma rachadura no ar.",
+           "falas": [["narr", "", "…um Limiar que separa o mundo humano do Abismo."]]}
+        ]},
+        {"id": "ep1-p02", "quadros": [
+          {"cena": "Kael flutuando de olhos fechados num vazio totalmente negro, cabelo e capa ondulando como se estivesse debaixo d'água.",
+           "falas": [["narr", "", "E é sempre no meio dos sonhos…"]]},
+          {"cena": "Close no rosto de Kael, sobrancelhas franzidas, ainda de olhos fechados.",
+           "falas": [["narr", "", "…que ele me chama."]]},
+          {"tam": "largo", "cena": "Ao fundo do vazio, uma fenda enorme se abre como um olho, cheia de fumaça negra e dezenas de olhos brancos.",
+           "falas": [["voz", "Voz", "Kael…"]]}
+        ]},
+        {"id": "ep1-p03", "quadros": [
+          {"cena": "Kael abre os olhos assustado, vendo a fenda de perto.",
+           "falas": [["fala", "Kael", "Quem… quem é você?!"]]},
+          {"cena": "Mãos de fumaça com garras saem da fenda e agarram os braços e o rosto de Kael.",
+           "falas": [["voz", "Voz", "O Limiar… está despertando."], ["voz", "Voz", "E você é a Chave."]]},
+          {"tam": "grande", "cena": "Kael sendo puxado para dentro da fenda, gritando, a mão estendida para cima.",
+           "falas": [["grito", "Kael", "NÃÃÃO!"]]}
+        ]},
+        {"id": "ep1-p04", "quadros": [
+          {"cena": "Kael acorda de um salto numa cama simples, num quarto pequeno de madeira no sótão, suado e ofegante, luz do amanhecer pela janela.",
+           "falas": [["sfx", "", "HAH! HAH!"]]},
+          {"cena": "Kael sentado na cama, tocando a bochecha esquerda com a mão, olhar perdido.",
+           "falas": [["pens", "Kael", "De novo esse sonho… e por que meu rosto tá queimando?"]]},
+          {"cena": "Vista da escada de madeira descendo para a forja, com a sombra de Bram lá embaixo.",
+           "falas": [["grito", "Bram (vindo de baixo)", "KAEL! O ferro não vai se bater sozinho, moleque!"], ["fala", "Kael", "Já vou, já vou…"]]}
+        ]},
+        {"id": "ep1-p05", "quadros": [
+          {"tam": "largo", "cena": "Interior da forja, fogo aceso, fagulhas voando. Kael martela uma lâmina na bigorna, Bram de braços cruzados ao lado.",
+           "falas": [["sfx", "", "KLANG! KLANG!"]]},
+          {"cena": "Bram olhando de lado para Kael, desconfiado.",
+           "falas": [["fala", "Bram", "Tá batendo torto. Sonhou com aquilo de novo?"]]},
+          {"cena": "Kael enxugando o suor da testa, sem olhar para Bram.",
+           "falas": [["fala", "Kael", "Uma voz me chamando. Toda noite, Bram. E fica mais perto."]]},
+          {"cena": "Close em Bram, parado, segurando uma pinça, expressão séria e preocupada.",
+           "falas": [["pens", "Bram", "Já começou… tão cedo."], ["fala", "Bram", "Bobagem. Vai entregar essas facas na praça."]]}
+        ]},
+        {"id": "ep1-p06", "quadros": [
+          {"tam": "largo", "cena": "Praça movimentada da Cidade Baixa de dia, barracas, pessoas, a catedral no alto ao fundo. Kael carrega um embrulho de facas. Pip corre até ele com a cesta de pães.",
+           "falas": [["fala", "Pip", "Kael! Guardei o pão mais torto pra você!"], ["fala", "Kael", "Que honra, Pip."]]},
+          {"cena": "Dorian pulando do telhado de uma barraca, caindo agachado bem na frente de Kael, sorrindo.",
+           "falas": [["sfx", "", "TUM!"]]},
+          {"cena": "Dorian em pé, apontando para as olheiras de Kael, provocando.",
+           "falas": [["fala", "Dorian", "Nossa, que cara de defunto. Perdeu pra mim até no sono?"], ["fala", "Kael", "Eu nunca perdi pra você, Dorian."]]}
+        ]},
+        {"id": "ep1-p07", "quadros": [
+          {"cena": "Dorian jogando uma espada de madeira para Kael num beco largo, segurando outra.",
+           "falas": [["fala", "Dorian", "Então prova."]]},
+          {"tam": "largo", "cena": "Kael e Dorian duelando com espadas de madeira, Kael atacando forte. Quadro diagonal, cheio de linhas de velocidade.",
+           "falas": [["sfx", "", "TAK! TAK! TAK!"]]},
+          {"cena": "Close nos olhos de Kael. Por um instante, um brilho estranho aparece neles.", "vermelho": "o brilho nos olhos",
+           "falas": [["pens", "Kael", "…?!"]]},
+          {"cena": "Dorian aproveitando a distração, a espada de madeira encostada no pescoço de Kael, Kael caído sentado.",
+           "falas": [["fala", "Dorian", "Ponto meu. Você tá estranho hoje, hein."]]}
+        ]},
+        {"id": "ep1-p08", "quadros": [
+          {"tam": "largo", "cena": "Uma patrulha da Guarda de Vel Aren entra na praça. Sienna à frente, armadura prateada, mão no cabo da espada, as pessoas abrindo caminho.",
+           "falas": [["fala", "Sienna", "Atenção! Hoje é noite de Eclipse Rubro. Toque de recolher ao pôr do sol!"]]},
+          {"cena": "Dorian se apoiando num poste, sorrindo galanteador para Sienna.",
+           "falas": [["fala", "Dorian", "E se eu precisar de escolta até em casa, guarda?"]]},
+          {"cena": "Sienna nem olhando para Dorian, seca.",
+           "falas": [["fala", "Sienna", "Então corre."]]},
+          {"cena": "Sienna parando e encarando Kael por um segundo, desconfiada. Kael devolvendo o olhar.",
+           "falas": [["pens", "Sienna", "Esse garoto… por que senti um arrepio?"]]}
+        ]},
+        {"id": "ep1-p09", "quadros": [
+          {"cena": "Fim de tarde. Kael e Dorian sentados num telhado, a cidade abaixo, o sol se pondo.",
+           "falas": [["fala", "Dorian", "Dizem que no Eclipse os sonhos ficam reais. Se sonhar comigo, não me conta."], ["fala", "Kael", "Vai pra casa, idiota."]]},
+          {"cena": "Dorian descendo do telhado acenando de costas. Kael sozinho.", "falas": []},
+          {"tam": "grande", "cena": "A lua nasce sobre as montanhas, cercada por um anel vermelho que se forma devagar.", "vermelho": "o anel",
+           "falas": [["narr", "", "Naquela noite, o céu sangrou."]]}
+        ]},
+        {"id": "ep1-p10", "quadros": [
+          {"cena": "Kael em pé no telhado, de costas, olhando a lua. Vento forte balançando a capa.",
+           "falas": [["voz", "Voz", "…Kael…"]]},
+          {"cena": "Close extremo no olho arregalado de Kael, uma gota de suor escorrendo.",
+           "falas": [["pens", "Kael", "Não… eu tô acordado!"]]},
+          {"tam": "largo", "cena": "Num beco escuro lá embaixo, a fumaça negra se junta e dezenas de olhos brancos se abrem, com fendas vermelhas brilhando.", "vermelho": "as fendas",
+           "falas": [["tremido", "Ecoante", "O Limiar… está despertando…"], ["sfx", "", "!!"]]}
+        ]}
+      ]
+    },
+    {
+      "n": 2, "titulo": "A Marca",
+      "resumo": "Os Ecoantes invadem a praça, Kael protege Pip e a Marca do Limiar desperta em seu rosto.",
+      "paginas": [
+        {"id": "ep2-p01", "quadros": [
+          {"cena": "Kael pulando do telhado para a rua, correndo em direção ao beco.",
+           "falas": [["pens", "Kael", "Aquela coisa… é do meu sonho!"]]},
+          {"tam": "largo", "cena": "Rua tomada de gente fugindo em pânico, lanternas caídas, a lua com o anel vermelho no alto.", "vermelho": "o anel",
+           "falas": [["grito", "Gente", "Monstros! Na praça!"]]},
+          {"cena": "Um Ecoante enorme se erguendo no meio da praça, fumaça negra subindo, dezenas de olhos brancos.",
+           "falas": [["sfx", "", "GRRROOOOH"]]}
+        ]},
+        {"id": "ep2-p02", "quadros": [
+          {"tam": "largo", "cena": "Soldados da Guarda enfrentando três Ecoantes na praça, barracas destruídas.",
+           "falas": [["fala", "Soldado", "Formem linha!"]]},
+          {"cena": "Sienna saltando e cortando um Ecoante ao meio com a espada longa, rastro de movimento.",
+           "falas": [["sfx", "", "ZASH!"]]},
+          {"cena": "As duas metades de fumaça se juntando de novo. Sienna surpresa.",
+           "falas": [["fala", "Sienna", "Ele se refez?! Aço não funciona!"]]}
+        ]},
+        {"id": "ep2-p03", "quadros": [
+          {"cena": "Pip presa debaixo de uma barraca desabada, a cesta de pães espalhada, chorando.",
+           "falas": [["fala", "Pip", "Socorro…"]]},
+          {"cena": "Um Ecoante se inclinando sobre Pip, os olhos brancos fixos nela.",
+           "falas": [["tremido", "Ecoante", "“Guardei o pão… mais torto… pra você…”"]]},
+          {"cena": "Kael chegando na esquina da praça, vendo a cena, olhos arregalados de horror.",
+           "falas": [["fala", "Kael", "Ele tá repetindo a voz dela…"]]}
+        ]},
+        {"id": "ep2-p04", "quadros": [
+          {"cena": "Kael pegando uma barra de ferro do chão e correndo.",
+           "falas": [["grito", "Kael", "Sai de perto dela!"]]},
+          {"tam": "largo", "cena": "Kael acertando a barra de ferro no Ecoante. A barra atravessa a fumaça sem efeito.",
+           "falas": [["sfx", "", "VUSH"]]},
+          {"cena": "A garra de fumaça acertando Kael em cheio e jogando ele contra um muro de pedra, que racha.",
+           "falas": [["sfx", "", "KRAK!"]]}
+        ]},
+        {"id": "ep2-p05", "quadros": [
+          {"cena": "Kael caído no chão, machucado, tentando levantar, visão meio embaçada.",
+           "falas": [["pens", "Kael", "Meu corpo… não se mexe…"]]},
+          {"cena": "Ao fundo, o Ecoante erguendo a garra sobre Pip.",
+           "falas": [["fala", "Pip", "Kael!"]]},
+          {"cena": "Close em Kael, os dentes cerrados, a mão fechando com força no chão.",
+           "falas": [["pens", "Kael", "Não vou ficar só olhando!"]]},
+          {"cena": "Fundo totalmente negro, só a silhueta de Kael e a fenda do sonho atrás dele.",
+           "falas": [["voz", "Voz", "Então aceite. Abra a porta, Chave."]]}
+        ]},
+        {"id": "ep2-p06", "impacto": true, "quadros": [
+          {"tam": "pagina", "cena": "Kael de pé, cabeça erguida, rachaduras vermelhas brilhantes se abrindo na bochecha esquerda e descendo pelo pescoço, os olhos acesos em vermelho, o cabelo e a capa erguidos por uma onda de energia.", "vermelho": "a marca e os olhos",
+           "falas": [["sfx", "", "VWOOOM"], ["grito", "Kael", "Eu disse… SAI DE PERTO DELA!"]]}
+        ]},
+        {"id": "ep2-p07", "quadros": [
+          {"cena": "O braço direito de Kael envolto em chamas negras com bordas vermelhas.", "vermelho": "as bordas", "falas": []},
+          {"tam": "largo", "cena": "Kael avançando num borrão e socando o Ecoante no centro. Quadro diagonal, linhas de velocidade.",
+           "falas": [["sfx", "", "DOOOM!"]]},
+          {"cena": "O Ecoante explodindo em fumaça e se desfazendo, os olhos sumindo um por um.",
+           "falas": [["tremido", "Ecoante", "A… Chave…"]]}
+        ]},
+        {"id": "ep2-p08", "quadros": [
+          {"tam": "largo", "cena": "Os outros Ecoantes da praça se virando todos ao mesmo tempo para Kael.", "falas": []},
+          {"cena": "Kael girando e acertando dois Ecoantes com um golpe em arco de chamas negras.",
+           "falas": [["sfx", "", "FWASH!"]]},
+          {"cena": "Sienna parada com a espada baixa, olhando, chocada.",
+           "falas": [["fala", "Sienna", "Ele está destruindo eles…"]]},
+          {"cena": "Dorian chegando correndo com as duas adagas na mão, freando ao ver Kael.",
+           "falas": [["fala", "Dorian", "K-Kael?!"]]}
+        ]},
+        {"id": "ep2-p09", "quadros": [
+          {"cena": "O último Ecoante se desfazendo. Kael cai de joelhos, ofegante, a marca ainda brilhando.", "vermelho": "a marca", "falas": []},
+          {"cena": "Pip, livre, abraçando Kael pelo pescoço, chorando.",
+           "falas": [["fala", "Pip", "Você veio!"]]},
+          {"cena": "Sienna apontando a espada para Kael, séria.",
+           "falas": [["fala", "Sienna", "Afaste a criança. O que é você?"]]},
+          {"cena": "Dorian entrando na frente de Kael, adagas erguidas contra Sienna.",
+           "falas": [["fala", "Dorian", "Ele é o idiota que acabou de salvar sua praça. Abaixa isso."]]}
+        ]},
+        {"id": "ep2-p10", "quadros": [
+          {"tam": "largo", "cena": "Topo da catedral negra, a lua com o anel vermelho atrás. Uma figura encapuzada agachada numa gárgula.", "vermelho": "o anel", "falas": []},
+          {"cena": "Close em Morvain, só os olhos brancos e o sorriso fino aparecendo na sombra do capuz.",
+           "falas": [["fala", "Morvain", "Finalmente…"]]},
+          {"cena": "A mão com garras de Morvain se fechando, como se segurasse a praça lá embaixo.",
+           "falas": [["fala", "Morvain", "A Chave acordou."]]}
+        ]}
+      ]
+    },
+    {
+      "n": 3, "titulo": "O Convite",
+      "resumo": "Lyra chega, explica a Marca e convida Kael para a Torre do Véu. Bram revela parte do passado de Kael.",
+      "paginas": [
+        {"id": "ep3-p01", "quadros": [
+          {"cena": "A praça destruída, fumaça subindo. Sienna, Dorian e Kael em tensão. Uma luz lilás desce do céu entre eles.",
+           "falas": [["sfx", "", "SHIIING"]]},
+          {"tam": "largo", "cena": "Lyra pousando suavemente no chão, o manto e o cabelo flutuando, círculos de runas brilhando sob os pés.",
+           "falas": [["fala", "Lyra", "Abaixe a espada, Guarda Roth."]]},
+          {"cena": "Sienna surpresa ao reconhecer o brasão no manto de Lyra.",
+           "falas": [["fala", "Sienna", "Uma maga da Ordem do Véu… aqui?"]]}
+        ]},
+        {"id": "ep3-p02", "quadros": [
+          {"cena": "Lyra se ajoelhando na frente de Kael, olhando a marca no rosto dele de perto.",
+           "falas": [["fala", "Lyra", "A Marca do Limiar. Então é você."]]},
+          {"cena": "Kael recuando, desconfiado.",
+           "falas": [["fala", "Kael", "Eu o quê? Quem é você?"]]},
+          {"cena": "Lyra encostando dois dedos na marca. Uma luz lilás acalma as rachaduras, que param de brilhar.",
+           "falas": [["fala", "Lyra", "Lyra Sedryn. E você precisa vir comigo antes que eles voltem."]]}
+        ]},
+        {"id": "ep3-p03", "quadros": [
+          {"tam": "largo", "cena": "Interior da forja de Bram à noite, luz do fogo baixo. Kael sentado num banco, Lyra em pé, Dorian encostado na parede, Bram de braços cruzados.",
+           "falas": [["narr", "", "Uma hora depois."]]},
+          {"cena": "Lyra criando com a mão uma ilusão de luz: um mapa do continente cortado por uma linha brilhante.",
+           "falas": [["fala", "Lyra", "A cada cem anos, o Eclipse enfraquece o Limiar. E o Limiar escolhe uma Chave."]]},
+          {"cena": "Close em Lyra, séria.",
+           "falas": [["fala", "Lyra", "A Chave pode selar o Abismo para sempre. Ou abri-lo de vez."]]}
+        ]},
+        {"id": "ep3-p04", "quadros": [
+          {"cena": "Dorian levantando a mão, irônico.",
+           "falas": [["fala", "Dorian", "Deixa eu ver se entendi. O destino do mundo tá nas mãos… dele?"], ["fala", "Kael", "Valeu, Dorian."]]},
+          {"cena": "A ilusão de Lyra mudando para a silhueta de uma figura encapuzada com olhos brancos.",
+           "falas": [["fala", "Lyra", "Morvain, o Arauto, também sabe disso. Ele quer a Chave para abrir o Abismo."]]},
+          {"cena": "Kael olhando para a própria mão, que treme.",
+           "falas": [["pens", "Kael", "Aquela voz no sonho… era ele?"]]}
+        ]},
+        {"id": "ep3-p05", "quadros": [
+          {"cena": "Lyra estendendo a mão para Kael.",
+           "falas": [["fala", "Lyra", "Na Torre do Véu, a Ordem pode te ensinar a controlar a Marca. Partimos ao amanhecer."]]},
+          {"cena": "Bram batendo o punho na bigorna.",
+           "falas": [["sfx", "", "BLAM!"], ["fala", "Bram", "Ele não vai a lugar nenhum."]]},
+          {"cena": "Todos olhando para Bram, surpresos.",
+           "falas": [["fala", "Kael", "Bram…?"]]}
+        ]},
+        {"id": "ep3-p06", "quadros": [
+          {"cena": "Bram de costas, olhando o fogo da forja.",
+           "falas": [["fala", "Bram", "Há dezessete anos, numa noite de Eclipse, um homem da Ordem bateu nessa porta."]]},
+          {"flashback": true, "cena": "Flashback, bordas do quadro irregulares: um Bram mais jovem, com barba escura, recebendo um bebê enrolado num pano das mãos de um homem ferido de manto.",
+           "falas": [["fala", "Homem (flashback)", "Esconda ele. Não deixe a Ordem nem o Abismo o encontrarem."]]},
+          {"cena": "Close em Bram, os olhos marejados.",
+           "falas": [["fala", "Bram", "Eu prometi te proteger. Até deles."]]}
+        ]},
+        {"id": "ep3-p07", "quadros": [
+          {"cena": "Kael se levantando do banco, encarando Bram.",
+           "falas": [["fala", "Kael", "Você sabia. Esse tempo todo."]]},
+          {"cena": "Lyra desviando o olhar, desconfortável.",
+           "falas": [["pens", "Lyra", "Um homem da Ordem… por que ninguém na Torre me contou isso?"]]},
+          {"cena": "Kael colocando a mão no ombro de Bram.",
+           "falas": [["fala", "Kael", "Você me protegeu a vida toda. Agora quem decide sou eu."]]}
+        ]},
+        {"id": "ep3-p08", "quadros": [
+          {"cena": "Madrugada, portão norte de Vel Aren. Kael com uma mochila, Lyra ao lado. Bram entregando uma espada nova, embrulhada.",
+           "falas": [["fala", "Bram", "Forjei pra quando esse dia chegasse. Volta inteiro, moleque."]]},
+          {"cena": "Dorian aparecendo encostado no portão com a mochila nas costas, sorrindo.",
+           "falas": [["fala", "Dorian", "Achou que ia viajar sem a parte bonita do grupo?"]]},
+          {"cena": "Kael sorrindo pela primeira vez no capítulo.",
+           "falas": [["fala", "Kael", "Idiota."]]}
+        ]},
+        {"id": "ep3-p09", "quadros": [
+          {"cena": "Sienna surgindo a cavalo atrás deles, sem a capa da Guarda.",
+           "falas": [["fala", "Sienna", "A Guarda mandou eu te prender. Eu achei melhor te vigiar de perto."]]},
+          {"cena": "Lyra suspirando, de olhos fechados.",
+           "falas": [["fala", "Lyra", "Eu vim buscar uma pessoa."]]},
+          {"tam": "largo", "cena": "Os quatro de costas, saindo pelo portão em direção às montanhas, o céu clareando.",
+           "falas": [["narr", "", "E assim, quatro estranhos deixaram Vel Aren."]]}
+        ]},
+        {"id": "ep3-p10", "quadros": [
+          {"cena": "Vista de longe do grupo pequeno na estrada da montanha, vistos por entre galhos secos.", "falas": []},
+          {"cena": "Uma figura encapuzada entre as árvores, de costas para o leitor, observando o grupo.",
+           "falas": [["fala", "???", "Pode correr, Chave."]]},
+          {"tam": "largo", "cena": "Close na bochecha de Kael. A marca pulsa fraca por um instante, sem ele perceber.", "vermelho": "a marca",
+           "falas": [["narr", "", "Mas o Limiar… já tinha começado a se abrir."], ["final", "", "FIM DO CAPÍTULO 1"]]}
+        ]}
+      ]
+    }
+  ]
+}
