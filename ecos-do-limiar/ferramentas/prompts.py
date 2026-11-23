@@ -38,7 +38,7 @@ def arte_existe(pid, n):
 
 def main():
     linhas = ["# Prompts dos quadros — Ecos do Limiar", "",
-              "Gerado por `ferramentas/prompts.py` a partir do roteiro. Formato: imagem 16:9, sem texto.",
+              "Gerado por `ferramentas/prompts.py` a partir do roteiro, para gerar as artes no ChatGPT (mesma conversa, anexando as fichas indicadas). Formato: imagem 16:9, sem texto.",
               "Salve cada imagem em `artes/quadros/` com o nome indicado e rode `python3 ferramentas/gerar.py`.", ""]
     total = 0
     for ep in DADOS["episodios"]:

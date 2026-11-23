@@ -1,9 +1,35 @@
 # Prompts dos quadros — Ecos do Limiar
 
-Gerado por `ferramentas/prompts.py` a partir do roteiro. Formato: imagem 16:9, sem texto.
+Gerado por `ferramentas/prompts.py` a partir do roteiro, para gerar as artes no ChatGPT (mesma conversa, anexando as fichas indicadas). Formato: imagem 16:9, sem texto.
 Salve cada imagem em `artes/quadros/` com o nome indicado e rode `python3 ferramentas/gerar.py`.
 
 ## Episódio 1 — O Sonho
+
+### `ep1-p01-q2.jpg`
+Anexar: nenhuma ficha
+
+```
+Single wide manga panel, 16:9, modern shonen dark fantasy style, black and white ink with screentone, high detail, dramatic lighting and strong shadows. Absolutely no text, no letters, no speech bubbles, no sound effects, no panel borders. Leave some empty space in the corners where speech bubbles can be added later. Characters must match the attached reference sheets exactly.
+Cena: O céu sobre as montanhas, com uma linha fina e tremulante atravessando as nuvens, como uma rachadura no ar.
+```
+
+### `ep1-p02-q1.jpg`
+Anexar: artes/fichas/kael-pb.png
+
+```
+Single wide manga panel, 16:9, modern shonen dark fantasy style, black and white ink with screentone, high detail, dramatic lighting and strong shadows. Absolutely no text, no letters, no speech bubbles, no sound effects, no panel borders. Leave some empty space in the corners where speech bubbles can be added later. Characters must match the attached reference sheets exactly.
+Kael: teenage boy, messy spiky black hair with long bangs over the forehead, sharp dark red eyes, lean athletic build, black hooded cloak over a dark tunic, brown leather belt and wrist wraps, no mark on his face.
+Cena: Kael flutuando de olhos fechados num vazio totalmente negro, cabelo e capa ondulando como se estivesse debaixo d'água.
+```
+
+### `ep1-p02-q2.jpg`
+Anexar: artes/fichas/kael-pb.png
+
+```
+Single wide manga panel, 16:9, modern shonen dark fantasy style, black and white ink with screentone, high detail, dramatic lighting and strong shadows. Absolutely no text, no letters, no speech bubbles, no sound effects, no panel borders. Leave some empty space in the corners where speech bubbles can be added later. Characters must match the attached reference sheets exactly.
+Kael: teenage boy, messy spiky black hair with long bangs over the forehead, sharp dark red eyes, lean athletic build, black hooded cloak over a dark tunic, brown leather belt and wrist wraps, no mark on his face.
+Cena: Close no rosto de Kael, sobrancelhas franzidas, ainda de olhos fechados.
+```
 
 ### `ep1-p02-q3.jpg`
 Anexar: nenhuma ficha

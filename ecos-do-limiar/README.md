@@ -14,7 +14,7 @@ Abra `index.html` no navegador (ou publique a pasta em qualquer hospedagem está
 
 ## Ferramentas
 - `python3 ferramentas/gerar.py` — gera `index.html`, `personagens.html` e `ep1-3.html`. Rode sempre que adicionar arte.
-- `python3 ferramentas/prompts.py` — gera `PROMPTS_QUADROS.md` com o prompt pronto de cada quadro que ainda não tem arte.
+- `python3 ferramentas/prompts.py` — gera `PROMPTS_QUADROS.md` com o prompt pronto (para o ChatGPT) de cada quadro que ainda não tem arte.
 - `python3 ferramentas/recortes.py` — refaz as versões web das fichas e os retratos.
 
 Quadros sem arte aparecem com a descrição da cena e os balões na ordem de leitura, até a ilustração chegar.
