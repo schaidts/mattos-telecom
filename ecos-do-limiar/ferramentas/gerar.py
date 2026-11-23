@@ -133,7 +133,7 @@ def pagina_personagens():
     for p in DADOS["personagens"]:
         idade = f'{p["idade"]} anos · ' if p["idade"] else ""
         fichas = "".join(
-            f'<a href="artes/fichas/{f}.png" class="ficha"><img src="artes/web/ficha-{f}.jpg" alt="Ficha de referência de {escape(p["nome"])} ({"colorida" if f.endswith("cor") else "preto e branco"})" loading="lazy" width="1400" height="933">'
+            f'<a href="artes/web/ficha-{f}.jpg" class="ficha"><img src="artes/web/ficha-{f}.jpg" alt="Ficha de referência de {escape(p["nome"])} ({"colorida" if f.endswith("cor") else "preto e branco"})" loading="lazy" width="1400" height="933">'
             f'<span>{"Colorida" if f.endswith("cor") else "Preto e branco"}</span></a>' for f in p["fichas"])
         blocos.append(f"""<article class="perfil" id="{p['id']}">
   <header><img src="{retrato(p['id'])}" alt="" width="480" height="480" loading="lazy"><div><h2>{escape(p['nome'])}</h2><p class="perfil-meta">{idade}{escape(p['papel'])}</p></div></header>
