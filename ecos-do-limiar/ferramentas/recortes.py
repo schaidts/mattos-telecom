@@ -22,5 +22,5 @@ for nome, (ficha, (x, y, s)) in RETRATOS.items():
     im = Image.open(F / f"{ficha}.png").convert("RGB").crop((x, y, x + s, y + s))
     im.resize((480, 480), Image.LANCZOS).save(W / f"retrato-{nome}.jpg", quality=85, optimize=True, progressive=True)
 # faixa do rosto de Kael (ficha aprovada) para o topo da página inicial enquanto capa.png não existe
-Image.open(F / "kael-pb.png").convert("RGB").crop((0, 110, 380, 620)).save(W / "hero-kael.jpg", quality=85, optimize=True, progressive=True)
+Image.open(F / "kael-pb.png").convert("RGB").crop((0, 125, 372, 528)).save(W / "hero-kael.jpg", quality=85, optimize=True, progressive=True)
 print("ok")

@@ -159,34 +159,45 @@ def fala_html(fala, i, posicionar=False):
         miolo = f'<span class="grito-borda"><span class="grito-miolo">{escape(texto)}</span></span>'
     else:
         miolo = f'<span class="texto">{escape(texto)}</span>'
-    return f'<p class="fala {tipo}{lado}"{estilo}>{quem_html}{miolo}</p>'
+    return f'<p class="fala t-{tipo}{lado}"{estilo}>{quem_html}{miolo}</p>'
 
 
-def quadro_html(q, n):
+def arte_quadro(pid, n):
+    for ext in ("jpg", "png", "webp"):
+        rel = f"artes/quadros/{pid}-q{n}.{ext}"
+        if existe(rel):
+            return rel
+    return None
+
+
+# posições padrão dos balões sobre a arte (cantos alternados, como na referência)
+CANTOS = [("8%", "7%", "esq topo"), ("auto", "7%", "dir base"), ("auto", "7%", "dir topo"), ("8%", "7%", "esq base")]
+
+
+def quadro_html(pg, q, n):
     classes = ["quadro", q.get("tam", "normal")]
     if q.get("vermelho"):
         classes.append("vermelho")
     if q.get("flashback"):
         classes.append("flashback")
+    arte = arte_quadro(pg["id"], n)
+    if arte:
+        classes.append("com-arte")
+        foco = q.get("foco", "center")
+        falas = "".join(
+            fala_html(f, i).replace('<p class="fala ', f'<p class="fala canto-{(i if len(q["falas"]) > 1 or f[0] != "sfx" else 1) % 4} ', 1)
+            for i, f in enumerate(q["falas"]))
+        return (f'<div class="{" ".join(classes)}"><img src="{arte}" alt="{escape(q["cena"])}" loading="lazy" style="object-position:{foco}">'
+                f'<div class="balao-camada">{falas}</div></div>')
     cor = (f'<span class="nota-cor">Vermelho carmesim: {escape(q["vermelho"])}</span>' if q.get("vermelho") else "")
     falas = "".join(fala_html(f, i) for i, f in enumerate(q["falas"]))
-    return (f'<div class="{" ".join(classes)}"><div class="cena"><span class="q-num">Q{n} · arte pendente</span>'
+    return (f'<div class="{" ".join(classes)} pendente"><div class="cena"><span class="q-num">Q{n} · arte pendente</span>'
             f'<span class="q-desc">{escape(q["cena"])}</span>{cor}</div><div class="falas">{falas}</div></div>')
 
 
 def pagina_html(ep, pg, idx, total):
-    arte = arte_pagina(pg["id"])
     cab = f'<h2 class="pg-rotulo"><span>Página {idx}</span> de {total}</h2>'
-    if arte:
-        todas = [f for q in pg["quadros"] for f in q["falas"]]
-        sobre = "".join(fala_html(f, i, True) for i, f in enumerate(todas) if len(f) > 3)
-        resto = [f for f in todas if len(f) <= 3]
-        legenda = ("<div class=\"falas legenda\">" + "".join(fala_html(f, i) for i, f in enumerate(resto)) + "</div>") if resto else ""
-        alt = " ".join(q["cena"] for q in pg["quadros"])
-        conteudo = (f'<figure class="arte"><img src="{arte}" alt="{escape(alt)}" width="900" height="1600" loading="lazy">'
-                    f'<div class="sobreposicao">{sobre}</div></figure>{legenda}')
-    else:
-        conteudo = '<div class="quadros">' + "".join(quadro_html(q, n) for n, q in enumerate(pg["quadros"], 1)) + "</div>"
+    conteudo = '<div class="quadros">' + "".join(quadro_html(pg, q, n) for n, q in enumerate(pg["quadros"], 1)) + "</div>"
     classe = "pagina impacto" if pg.get("impacto") else "pagina"
     return f'<section class="{classe}" id="p{idx:02d}" aria-label="Página {idx}">{cab}{conteudo}</section>'
 
@@ -203,9 +214,10 @@ def pagina_episodio(ep):
            else '<a class="botao botao-sec" href="index.html">← Início</a>')
     prox = (f'<a class="botao" href="ep{n+1}.html">Próximo episódio →</a>' if n < len(eps)
             else '<a class="botao" href="index.html">Voltar ao início</a>')
-    pendentes = sum(1 for pg in ep["paginas"] if not arte_pagina(pg["id"]))
-    aviso = (f'<p class="aviso">As ilustrações deste episódio ainda não foram entregues ({pendentes} de {total} páginas pendentes). '
-             'Cada quadro mostra a cena do roteiro e os balões já posicionados na ordem de leitura.</p>') if pendentes else ""
+    qt = [(pg["id"], n) for pg in ep["paginas"] for n in range(1, len(pg["quadros"]) + 1)]
+    pendentes = sum(1 for pid, n in qt if not arte_quadro(pid, n))
+    aviso = (f'<p class="aviso">{len(qt) - pendentes} de {len(qt)} quadros deste episódio já têm arte. '
+             'Os demais mostram a cena do roteiro com os balões na ordem de leitura até a ilustração chegar.</p>') if pendentes else ""
     corpo = f"""{FILTRO_TREMIDO}<main class="leitor">
 <a class="voltar" href="index.html">← Início</a>
 <h1 class="titulo-pagina">{escape(DADOS['capitulo'])} <span>· Episódio {n} — {escape(ep['titulo'])}</span></h1>

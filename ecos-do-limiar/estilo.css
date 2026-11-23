@@ -156,19 +156,19 @@ a { color: inherit; }
 /* ---------- balões (mesmo visual da referência) ---------- */
 .fala .texto, .grito-miolo { display: block; font: 700 clamp(.78rem, 3.4cqi, 1rem)/1.2 var(--fonte-balao); text-transform: uppercase; color: #111; text-align: center; }
 .quadros .fala .texto, .legenda .fala .texto, .quadros .grito-miolo, .legenda .grito-miolo { font-size: .9rem; }
-.fala.narr .texto { background: #fff; border: 2px solid #111; padding: .55em .7em; text-align: left; }
-.fala.fala .texto { background: #fff; border: 2px solid #111; border-radius: 50% / 46%; padding: .9em 1.1em; }
-.fala.pens .texto { background: #fff; border: 2px solid #111; border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%; padding: .9em 1.2em; position: relative; }
-.fala.pens .texto::after { content: ""; position: absolute; left: 18%; bottom: -14px; width: 10px; height: 10px; border: 2px solid #111; border-radius: 50%; background: #fff; box-shadow: -10px 9px 0 -2px #fff, -10px 9px 0 0 #111; }
-.fala.voz .texto { background: #000; color: #fff; border-radius: 50%; padding: 1.2em 1.1em; box-shadow: 0 0 0 2px #000, 0 0 10px 3px rgba(0,0,0,.85), 0 0 22px rgba(255,255,255,.12); }
-.fala.tremido .texto { background: #050505; color: #fff; border-radius: 48% 52% 45% 55% / 55% 48% 52% 45%; padding: 1.1em 1.1em; filter: url(#tremor); box-shadow: 0 0 0 2px rgba(208,20,44,.45); letter-spacing: .03em; }
+.fala.t-narr .texto { background: #fff; border: 2px solid #111; padding: .55em .7em; text-align: left; }
+.fala.t-fala .texto { background: #fff; border: 2px solid #111; border-radius: 50% / 46%; padding: .9em 1.1em; }
+.fala.t-pens .texto { background: #fff; border: 2px solid #111; border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%; padding: .9em 1.2em; position: relative; }
+.fala.t-pens .texto::after { content: ""; position: absolute; left: 18%; bottom: -14px; width: 10px; height: 10px; border: 2px solid #111; border-radius: 50%; background: #fff; box-shadow: -10px 9px 0 -2px #fff, -10px 9px 0 0 #111; }
+.fala.t-voz .texto { background: #000; color: #fff; border-radius: 50%; padding: 1.2em 1.1em; box-shadow: 0 0 0 2px #000, 0 0 10px 3px rgba(0,0,0,.85), 0 0 22px rgba(255,255,255,.12); }
+.fala.t-tremido .texto { background: #050505; color: #fff; border-radius: 48% 52% 45% 55% / 55% 48% 52% 45%; padding: 1.1em 1.1em; filter: url(#tremor); box-shadow: 0 0 0 2px rgba(208,20,44,.45); letter-spacing: .03em; }
 .grito-borda { display: block; background: #111; padding: 3px;
   clip-path: polygon(0 18%, 9% 12%, 6% 0, 20% 8%, 30% 0, 40% 9%, 52% 0, 60% 9%, 72% 0, 79% 10%, 94% 3%, 92% 17%, 100% 26%, 93% 38%, 100% 50%, 93% 61%, 100% 74%, 92% 82%, 96% 98%, 80% 91%, 69% 100%, 59% 91%, 47% 100%, 38% 91%, 25% 100%, 19% 90%, 4% 96%, 7% 82%, 0 72%, 6% 60%, 0 47%, 6% 34%); }
 .grito-miolo { background: #fff; padding: 1.3em 1.5em;
   clip-path: inherit; }
-.fala.sfx .texto { font: 400 clamp(1.5rem, 8cqi, 2.6rem)/1 var(--fonte-sfx); letter-spacing: .04em; color: #fff; -webkit-text-stroke: 1.5px #000; paint-order: stroke fill; text-shadow: 3px 3px 0 #000; transform: rotate(-6deg); background: none; border: 0; }
-.quadros .fala.sfx .texto { font-size: 2rem; }
-.fala.final .texto { background: #000; color: #fff; border: 2px solid var(--carmesim); padding: .6em 1em; font-family: var(--fonte-titulo); letter-spacing: .12em; }
+.fala.t-sfx .texto { font: 400 clamp(1.5rem, 8cqi, 2.6rem)/1 var(--fonte-sfx); letter-spacing: .04em; color: #fff; -webkit-text-stroke: 1.5px #000; paint-order: stroke fill; text-shadow: 3px 3px 0 #000; transform: rotate(-6deg); background: none; border: 0; }
+.quadros .fala.t-sfx .texto { font-size: 2rem; }
+.fala.t-final .texto { background: #000; color: #fff; border: 2px solid var(--carmesim); padding: .6em 1em; font-family: var(--fonte-titulo); letter-spacing: .12em; }
 
 .fim-ep { margin-top: 8px; }
 .fim-cap { text-align: center; font: 700 1.2rem var(--fonte-titulo); color: var(--carmesim); letter-spacing: .1em; text-transform: uppercase; }
@@ -184,3 +184,30 @@ a { color: inherit; }
   .quadro.largo, .quadro.grande, .quadro.pagina { grid-column: 1 / -1; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ---------- quadros com arte (formato da referência) ---------- */
+.quadros { background: #fff; padding: 8px; gap: 8px; }
+.quadro.com-arte { padding: 0; min-height: 0; aspect-ratio: 16 / 9; background: #000; display: block; border: 3px solid #000; }
+.quadro.com-arte.largo { aspect-ratio: 16 / 8; }
+.quadro.com-arte.grande { aspect-ratio: 4 / 4; }
+.quadro.com-arte.pagina { aspect-ratio: 9 / 16; }
+.quadro.com-arte img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.08); }
+.quadro.com-arte.vermelho img { filter: none; }
+.balao-camada { position: absolute; inset: 0; container-type: inline-size; pointer-events: none; }
+.balao-camada .fala { position: absolute; margin: 0; max-width: 40%; }
+.balao-camada .quem { display: none; }
+.balao-camada .fala .texto, .balao-camada .grito-miolo { font-size: clamp(.62rem, 3.3cqi, .95rem); }
+.balao-camada .fala.t-narr .texto { padding: .5em .65em; }
+.balao-camada .canto-0 { left: 4%; top: 7%; }
+.balao-camada .canto-1 { right: 4%; bottom: 8%; }
+.balao-camada .canto-2 { right: 4%; top: 7%; }
+.balao-camada .canto-3 { left: 4%; bottom: 8%; }
+.balao-camada .fala.t-sfx .texto { font-size: clamp(1.4rem, 9cqi, 3rem); }
+.quadro.pendente { background-color: #1b1b1f; }
+
+/* topo da inicial: arte em cima, texto sobre fundo escuro */
+.hero { min-height: 0; padding-top: min(78vw, 460px); }
+.hero::before { inset: 0 0 auto 0; height: min(100vw, 600px); background-position: center top; background-size: cover;
+  -webkit-mask-image: linear-gradient(#000 55%, transparent); mask-image: linear-gradient(#000 55%, transparent); }
+.hero::after { background: radial-gradient(90% 40% at 85% 8%, rgba(208, 20, 44, .28), transparent 70%), linear-gradient(180deg, rgba(76, 29, 149, .25), transparent 40%); }
+.hero-conteudo { position: relative; }
