@@ -8,7 +8,8 @@ Abra `index.html` no navegador (ou publique a pasta em qualquer hospedagem está
 ## Estrutura
 - `dados/capitulo1.json` — todo o texto do roteiro (narrações, falas, SFX), separado das imagens.
 - `artes/fichas/` — fichas de personagem originais (PNG). `artes/cenarios/` — cenários.
-- `artes/quadros/` — arte de cada quadro, nomeada `ep1-p03-q2.jpg` (episódio, página, quadro). Imagem 16:9, sem texto.
+- `artes/paginas/` — página inteira feita no ChatGPT, nomeada como no roteiro (`ep1-p03.png`, vertical 9:16, sem texto). Os balões são encaixados por cima em HTML (campo `pos` de cada fala no JSON).
+- `artes/quadros/` — alternativa: arte de cada quadro separado, nomeada `ep1-p03-q2.jpg` (episódio, página, quadro). Imagem 16:9, sem texto.
 - `artes/interface/` — (opcional) `capa.png`, `kael.png`, `ep1-thumb.png`… quando existirem, substituem os recortes das fichas.
 - `estilo.css` — visual do site e dos balões.
 

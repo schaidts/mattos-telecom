@@ -197,8 +197,19 @@ def quadro_html(pg, q, n):
 
 def pagina_html(ep, pg, idx, total):
     cab = f'<h2 class="pg-rotulo"><span>Página {idx}</span> de {total}</h2>'
-    conteudo = '<div class="quadros">' + "".join(quadro_html(pg, q, n) for n, q in enumerate(pg["quadros"], 1)) + "</div>"
     classe = "pagina impacto" if pg.get("impacto") else "pagina"
+    arte = arte_pagina(pg["id"])
+    if arte:
+        # página inteira entregue pelo ChatGPT: balões com "pos" vão por cima; os sem posição ficam numa faixa abaixo
+        todas = [f for q in pg["quadros"] for f in q["falas"]]
+        sobre = "".join(fala_html(f, i, True) for i, f in enumerate(todas) if len(f) > 3)
+        resto = [f for f in todas if len(f) <= 3]
+        legenda = ('<div class="falas legenda">' + "".join(fala_html(f, i) for i, f in enumerate(resto)) + "</div>") if resto else ""
+        alt = " ".join(q["cena"] for q in pg["quadros"])
+        conteudo = (f'<figure class="arte"><img src="{arte}" alt="{escape(alt)}" loading="lazy">'
+                    f'<div class="sobreposicao">{sobre}</div></figure>{legenda}')
+        return f'<section class="{classe}" id="p{idx:02d}" aria-label="Página {idx}">{cab}{conteudo}</section>'
+    conteudo = '<div class="quadros">' + "".join(quadro_html(pg, q, n) for n, q in enumerate(pg["quadros"], 1)) + "</div>"
     return f'<section class="{classe}" id="p{idx:02d}" aria-label="Página {idx}">{cab}{conteudo}</section>'
 
 
@@ -215,7 +226,7 @@ def pagina_episodio(ep):
     prox = (f'<a class="botao" href="ep{n+1}.html">Próximo episódio →</a>' if n < len(eps)
             else '<a class="botao" href="index.html">Voltar ao início</a>')
     qt = [(pg["id"], n) for pg in ep["paginas"] for n in range(1, len(pg["quadros"]) + 1)]
-    pendentes = sum(1 for pid, n in qt if not arte_quadro(pid, n))
+    pendentes = sum(1 for pid, n in qt if not (arte_quadro(pid, n) or arte_pagina(pid)))
     aviso = (f'<p class="aviso">{len(qt) - pendentes} de {len(qt)} quadros deste episódio já têm arte. '
              'Os demais mostram a cena do roteiro com os balões na ordem de leitura até a ilustração chegar.</p>') if pendentes else ""
     corpo = f"""{FILTRO_TREMIDO}<main class="leitor">
